@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GoSport.Data.Models
 {
@@ -9,7 +11,7 @@ namespace GoSport.Data.Models
         [Required]
         public bool isLiked { get; set; }
 
-        public int AuthorId { get; set; }
+        public string AuthorId { get; set; }
 
         public virtual User Author { get; set; }
 

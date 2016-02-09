@@ -14,13 +14,15 @@ namespace GoSport.Data.Models
 {
     public class User : IdentityUser, IDeletableEntity
     {
-        private ICollection<Message> messages;
+        private ICollection<Message> sentMessages;
+        private ICollection<Message> recievedMEssages;
         private ICollection<SportCategory> favouriteCategories;
         private ICollection<Like> likes;
 
         public User()
         {
-            this.messages = new HashSet<Message>();
+            this.sentMessages = new HashSet<Message>();
+            this.recievedMessages = new HashSet<Message>();
             this.favouriteCategories = new HashSet<SportCategory>();
             this.likes = new HashSet<Like>();
 
@@ -46,10 +48,18 @@ namespace GoSport.Data.Models
 
         public int NegativeVotes { get; set; }
 
-        public virtual ICollection<Message> Messages
+        [InverseProperty("Author")]
+        public virtual ICollection<Message> SentMessages
         {
-            get { return this.messages; }
-            set { this.Messages = value; }
+            get { return this.sentMessages; }
+            set { this.sentMessages = value; }
+        }
+
+        [InverseProperty("Reciever")]
+        public virtual ICollection<Message> recievedMessages
+        {
+            get { return this.recievedMessages; }
+            set { this.recievedMessages = value; }
         }
 
         public virtual ICollection<SportCategory> FavouriteCategories

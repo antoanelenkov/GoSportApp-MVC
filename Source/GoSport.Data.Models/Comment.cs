@@ -21,9 +21,13 @@ namespace GoSport.Data.Models
         [Required]
         public string Content { get; set; }
 
-        public int AuthorId { get; set; }
+        public string AuthorId { get; set; }
 
         public virtual User Author { get; set; }
+
+        public int SportCenterId { get; set; }
+
+        public virtual SportCenter SportCenter { get; set; }
 
         public virtual ICollection<Like> Likes
         {
