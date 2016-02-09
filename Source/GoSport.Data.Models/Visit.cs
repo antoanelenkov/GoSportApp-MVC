@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace GoSport.Data.Models
 {
-    public class Class1
+    class Visit
     {
+        public int Id { get; set; }
+
+        public int SiteVisits { get; set; }
     }
 }

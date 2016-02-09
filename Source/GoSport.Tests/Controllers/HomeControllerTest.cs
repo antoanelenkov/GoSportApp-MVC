@@ -5,7 +5,7 @@ using System.Text;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GoSport;
-using GoSport.Controllers;
+using GoSport.Client.Controllers;
 
 namespace GoSport.Tests.Controllers
 {
