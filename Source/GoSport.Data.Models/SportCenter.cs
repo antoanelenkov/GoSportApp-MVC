@@ -43,13 +43,13 @@ namespace GoSport.Data.Models
 
         public bool IsDeleted { get; set; }
 
-        public ICollection<string> PicturesUrls
+        public virtual ICollection<string> PicturesUrls
         {
             get { return this.picturesUrls; }
             set { this.picturesUrls = value; }
         }
 
-        public ICollection<Comment> Comments
+        public virtual ICollection<Comment> Comments
         {
             get { return this.comments; }
             set { this.comments = value; }

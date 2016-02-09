@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GoSport.Data.Models
 {
-    class Visit
+    public class Visit
     {
         public int Id { get; set; }
 

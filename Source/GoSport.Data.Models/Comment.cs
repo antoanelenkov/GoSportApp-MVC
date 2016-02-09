@@ -25,13 +25,13 @@ namespace GoSport.Data.Models
 
         public virtual User Author { get; set; }
 
-        public ICollection<Like> Likes
+        public virtual ICollection<Like> Likes
         {
             get { return this.likes; }
             set { this.likes = value; }
         }
 
-        public ICollection<Comment> Answers
+        public virtual ICollection<Comment> Answers
         {
             get { return this.answers; }
             set { this.answers = value; }

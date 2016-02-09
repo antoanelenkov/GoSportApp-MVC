@@ -46,19 +46,19 @@ namespace GoSport.Data.Models
 
         public int NegativeVotes { get; set; }
 
-        public ICollection<Message> Messages
+        public virtual ICollection<Message> Messages
         {
             get { return this.messages; }
             set { this.Messages = value; }
         }
 
-        public ICollection<SportCategory> FavouriteCategories
+        public virtual ICollection<SportCategory> FavouriteCategories
         {
             get { return this.favouriteCategories; }
             set { this.FavouriteCategories = value; }
         }
 
-        public ICollection<Like> Likes
+        public virtual ICollection<Like> Likes
         {
             get { return this.likes; }
             set { this.likes = value; }

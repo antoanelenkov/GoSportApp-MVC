@@ -19,13 +19,13 @@ namespace GoSport.Data.Models
         [Required]
         public string Name { get; set; }
 
-        public ICollection<SportCenter> SportCenters
+        public virtual ICollection<SportCenter> SportCenters
         {
             get { return this.sportCenters; }
             set { this.sportCenters = value; }
         }
 
-        public ICollection<User> Users
+        public virtual ICollection<User> Users
         {
             get { return this.users; }
             set { this.users = value; }
