@@ -10,6 +10,11 @@ namespace GoSport.Client.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using Services.Contracts;
+    using Services;
+    using Data.Common.Repository;
+    using System.Data.Entity;
+    using Models;
 
     public static class NinjectWebCommon 
     {
@@ -61,6 +66,10 @@ namespace GoSport.Client.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<ISportCenterService>().To<SportCenterService>();
+            kernel.Bind<DbContext>().To<ApplicationDbContext>();
+            kernel.Bind(typeof(IDeletableEntityRepository<>)).To(typeof(DeletableEntityRepository<>));
+            
         }        
     }
 }

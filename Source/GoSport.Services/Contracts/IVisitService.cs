@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace GoSport.Services.Contracts
 {
-    interface IUserService
+    public interface IVIsitService
     {
+        int GetAllSiteVisits();
     }
 }

@@ -191,12 +191,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SportCenterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="ViewModels\AccountViewModels.cs" />
+    <Compile Include="ViewModels\IdentityModels.cs" />
+    <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -255,6 +256,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\SportCenter\SportCenters.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -268,6 +270,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GoSport.Client.Infrastructure\GoSport.Client.Infrastructure.csproj">
+      <Project>{6813dc53-5eee-4507-8604-5301ee51a0d3}</Project>
+      <Name>GoSport.Client.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GoSport.Data.Common\GoSport.Data.Common.csproj">
       <Project>{a22bf89d-5df2-44e9-91a7-ef6b0e06267c}</Project>
       <Name>GoSport.Data.Common</Name>
@@ -275,6 +281,10 @@
     <ProjectReference Include="..\GoSport.Data.Models\GoSport.Data.Models.csproj">
       <Project>{bba96b13-4213-4cac-802c-11c19b905481}</Project>
       <Name>GoSport.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GoSport.Services\GoSport.Services.csproj">
+      <Project>{e96d60f0-4cbb-46d4-a851-707ddf417050}</Project>
+      <Name>GoSport.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

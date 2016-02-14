@@ -57,12 +57,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="SportCenterService.cs" />
+    <Compile Include="Contracts\ILikeService.cs" />
+    <Compile Include="Contracts\IMessageService.cs" />
+    <Compile Include="Contracts\ISportCategoryService.cs" />
+    <Compile Include="Contracts\IVisitService.cs" />
+    <Compile Include="Contracts\ICommentService.cs" />
+    <Compile Include="Contracts\ISportCenterRatingService.cs" />
+    <Compile Include="Contracts\ISportCenterService.cs" />
+    <Compile Include="Contracts\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GoSport.Data.Common\GoSport.Data.Common.csproj">
+      <Project>{a22bf89d-5df2-44e9-91a7-ef6b0e06267c}</Project>
+      <Name>GoSport.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GoSport.Data.Models\GoSport.Data.Models.csproj">
+      <Project>{bba96b13-4213-4cac-802c-11c19b905481}</Project>
+      <Name>GoSport.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GoSport.Data\GoSport.Data.csproj">
+      <Project>{f32919ab-ed31-4413-9228-fb3cf98ad00a}</Project>
+      <Name>GoSport.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace GoSport.Services.Contracts
 {
-    interface IUserService
+    public interface IMessageService
     {
+        bool UpdateById(int id, string content);
+
+        bool DeleteById(int id);
     }
 }

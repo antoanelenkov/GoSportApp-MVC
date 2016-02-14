@@ -15,7 +15,7 @@ namespace GoSport.Data.Models
     public class User : IdentityUser, IDeletableEntity
     {
         private ICollection<Message> sentMessages;
-        private ICollection<Message> recievedMEssages;
+        private ICollection<Message> recievedMessages;
         private ICollection<SportCategory> favouriteCategories;
         private ICollection<Like> likes;
 
@@ -56,7 +56,7 @@ namespace GoSport.Data.Models
         }
 
         [InverseProperty("Reciever")]
-        public virtual ICollection<Message> recievedMessages
+        public virtual ICollection<Message> RecievedMessages
         {
             get { return this.recievedMessages; }
             set { this.recievedMessages = value; }

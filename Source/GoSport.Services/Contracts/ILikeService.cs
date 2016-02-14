@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GoSport.Services.Contracts
 {
-    interface ILikeService
+    public interface ILikeService
     {
     }
 }
