@@ -1,5 +1,6 @@
 namespace GoSport.Data.Migrations
 {
+    using GoSport.Data.DataSeed;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -15,6 +16,12 @@ namespace GoSport.Data.Migrations
 
         protected override void Seed(GoSport.Data.ApplicationDbContext context)
         {
+            if (context.SportCategories.Any()) return;
+
+            var dataSeeder = new DataSeeder(context);
+
+            dataSeeder.SeedCategories();
+            dataSeeder.SeedAddresses();
         }
     }
 }
