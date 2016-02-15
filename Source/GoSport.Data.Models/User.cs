@@ -32,11 +32,11 @@ namespace GoSport.Data.Models
         [Required]
         public string Name { get; set; }
 
-        public string Address { get; set; }
+        public string ExactAddress { get; set; }
 
-        public string City { get; set; }
+        public int AddressId { get; set; }
 
-        public string Neighborhood { get; set; }
+        public virtual Address Address { get; set; }
 
         public string Facebook { get; set; }
 

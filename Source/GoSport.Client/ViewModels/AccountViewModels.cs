@@ -65,6 +65,30 @@ namespace GoSport.Client.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
+        [Display(Name = "Detailed address")]
+        public string Address { get; set; }
+
+        public string City { get; set; }
+
+        public string Neighborhood { get; set; }
+
+        [Display(Name = "Facebook profile")]
+        public string Facebook { get; set; }
+
+        [Display(Name = "Profile pricture")]
+        public string AvatarUrl { get; set; }
+
+        [Display(Name = "About Me")]
+        [DataType(DataType.MultilineText)]
+        public string AboutMe { get; set; }
+
+        [Display(Name = "Favourite sports")]
+        public string FavouriteCategories { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -76,12 +100,12 @@ namespace GoSport.Client.Models
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "Confirm password *")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         [Required]
-        [Display(Name = "UserName")]
+        [Display(Name = "Username")]
         public string UserName { get; set; }
     }
 

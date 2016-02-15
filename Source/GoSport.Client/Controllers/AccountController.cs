@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using GoSport.Client.Models;
 using GoSport.Data.Models;
+using GoSport.Services.Contracts;
 
 namespace GoSport.Client.Controllers
 {
@@ -18,15 +19,18 @@ namespace GoSport.Client.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ISportCategoryService sportCategories;
 
-        public AccountController()
+        public AccountController(ISportCategoryService sportCategories)
         {
+            this.sportCategories = sportCategories;
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ISportCategoryService sportCategories)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            this.sportCategories = sportCategories;
         }
 
         public ApplicationSignInManager SignInManager
@@ -140,6 +144,9 @@ namespace GoSport.Client.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            var categories = sportCategories.AllNames().ToList();
+            ViewBag.Categories = categories;
+
             return View();
         }
 

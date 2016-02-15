@@ -33,6 +33,8 @@ namespace GoSport.Data
 
         public IDbSet<Visit> Visits { get; set; }
 
+        public IDbSet<Address> Addresses { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

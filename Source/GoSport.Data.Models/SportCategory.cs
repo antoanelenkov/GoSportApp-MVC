@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using GoSport.Data.Common.Models;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System;
 
 namespace GoSport.Data.Models
 {
-    public class SportCategory
+    public class SportCategory : AuditInfo, IDeletableEntity
     {
         private ICollection<SportCenter> sportCenters;
         private ICollection<User> users;
@@ -19,6 +21,10 @@ namespace GoSport.Data.Models
 
         [Required]
         public string Name { get; set; }
+
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
 
         public virtual ICollection<SportCenter> SportCenters
         {

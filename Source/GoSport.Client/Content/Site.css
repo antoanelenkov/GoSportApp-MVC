@@ -22,3 +22,19 @@ select,
 textarea {
     max-width: 280px;
 }
+
+div.upload {
+    margin-left:15px;
+    width: 80px;
+    height: 50px;
+    background: url(https://pdsupport.files.wordpress.com/2012/02/email-group-upload-button.png?w=670);
+    overflow: hidden;
+}
+
+div.upload input {
+    display: block !important;
+    width: 157px !important;
+    height: 57px !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+}

@@ -9,6 +9,8 @@ namespace GoSport.Services.Contracts
 {
     public interface ISportCategoryService
     {
+        IQueryable<string> AllNames();
+
         SportCategory Create(string name);
 
         bool UpdateById(int id, string name);

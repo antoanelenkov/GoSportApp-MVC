@@ -9,7 +9,7 @@ namespace GoSport.Services.Contracts
 {
     public interface ISportCenterService
     {
-        IEnumerable<SportCenter> All();
+        IQueryable<SportCenter> All();
 
         SportCenter Create(SportCenter model);
 

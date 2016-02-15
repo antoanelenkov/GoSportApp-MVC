@@ -9,23 +9,34 @@ namespace GoSport.Client
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+            "~/Scripts/kendo/jquery.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+                "~/Scripts/jquery.validate*"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+                "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                "~/Scripts/bootstrap.js",
+                "~/Scripts/respond.js"));
+
+            // For Kendo
+            bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
+                "~/Scripts/kendo/kendo.all.min.js",
+                "~/Scripts/kendo/kendo.aspnetmvc.min.js"));
+
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                "~/Content/bootstrap.css",
+                "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/kendo-css").Include(
+                "~/content/kendo-css/kendo.common.min.css",
+                "~/content/kendo-css/kendo.metro.min.css",
+                "~/content/kendo-css/kendo.default.*"));
         }
     }
 }

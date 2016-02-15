@@ -21,16 +21,13 @@ namespace GoSport.Data.Models
 
         public int Id { get; set; }
 
-        public int SportCategoryId { get; set; }
+        [Required]
+        public string ExactAddress { get; set; }
+
+        public int AddressId { get; set; }
 
         [Required]
-        public string City { get; set; }
-
-        [Required]
-        public string Neighborhood { get; set; }
-
-        [Required]
-        public string Address { get; set; }
+        public virtual Address Address { get; set; }
 
         [Required]
         public string Description { get; set; }

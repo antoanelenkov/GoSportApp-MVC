@@ -18,7 +18,7 @@ namespace GoSport.Services
             this.sportCentersDb = sportCentersDb;
         }
 
-        public IEnumerable<SportCenter> All()
+        public IQueryable<SportCenter> All()
         {
             return this.sportCentersDb.All();
         }
