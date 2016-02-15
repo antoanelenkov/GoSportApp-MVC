@@ -1,6 +1,8 @@
 ﻿using GoSport.Data.Common.Models;
 using GoSport.Data.Common.Repository;
 using GoSport.Data.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +13,19 @@ namespace GoSport.Data.DataSeed
 {
     public class DataSeeder
     {
-        ApplicationDbContext db;
+        private ApplicationDbContext db;
+        private UserManager<User> userManager;
         
         public DataSeeder(ApplicationDbContext db)
         {
             this.db = db;
+            this.userManager = new UserManager<User>(new UserStore<User>(db));
+        }
+
+        public void SeedRoles()
+        {
+            db.Roles.Add(new IdentityRole { Name = "Admin" });
+            db.SaveChanges();
         }
 
 
