@@ -1,5 +1,4 @@
-﻿using GoSport.Client.Infrastructure.Mapping;
-using GoSport.Client.Models;
+﻿using GoSport.Client.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -24,8 +23,8 @@ namespace GoSport.Client
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            var autoMapperConfig = new AutoMapperConfig();
-            autoMapperConfig.Execute(Assembly.GetExecutingAssembly());
+            //var autoMapperConfig = new AutoMapperConfig();
+            //autoMapperConfig.Execute(Assembly.GetExecutingAssembly());
         }
     }
 }
