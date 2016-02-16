@@ -25,7 +25,6 @@ namespace GoSport.Data.DataSeed
         public void SeedRoles()
         {
             db.Roles.Add(new IdentityRole { Name = "Admin" });
-            db.SaveChanges();
         }
 
 
@@ -46,39 +45,37 @@ namespace GoSport.Data.DataSeed
             this.db.SportCategories.Add(new SportCategory() { Name = "American football" });
             this.db.SportCategories.Add(new SportCategory() { Name = "Zumba" });
             this.db.SportCategories.Add(new SportCategory() { Name = "Bulgarian horo" });
-
-            this.db.SaveChanges();
         }
 
-        //public void SeedAddresses()
-        //{
-        //    this.db.Addresses.Add(new Address() { City = "Sofia", Neighbourhood = "Center" });
-        //    this.db.Addresses.Add(new Address() { City = "Sofia", Neighbourhood = "Liulin 9" });
-        //    this.db.Addresses.Add(new Address() { City = "Sofia", Neighbourhood = "Drujba 1" });
-        //    this.db.Addresses.Add(new Address() { City = "Sofia", Neighbourhood = "Drujba 2" });
-        //    this.db.Addresses.Add(new Address() { City = "Sofia", Neighbourhood = "Mladost 2" });
-        //    this.db.Addresses.Add(new Address() { City = "Sofia", Neighbourhood = "Mladost 1" });
-        //    this.db.Addresses.Add(new Address() { City = "Sofia", Neighbourhood = "Mladost 3" });
-        //    this.db.Addresses.Add(new Address() { City = "Sofia", Neighbourhood = "Mladost 4" });
-        //    this.db.Addresses.Add(new Address() { City = "Sofia", Neighbourhood = "Ivan Vazov" });
-        //    this.db.Addresses.Add(new Address() { City = "Sofia", Neighbourhood = "Geo Milev" });
-        //    this.db.Addresses.Add(new Address() { City = "Sofia", Neighbourhood = "Pavlovo" });
-        //    this.db.Addresses.Add(new Address() { City = "Sofia", Neighbourhood = "Krasno selo" });
-        //    this.db.Addresses.Add(new Address() { City = "Sofia", Neighbourhood = "Krasna polqna" });
-        //    this.db.Addresses.Add(new Address() { City = "Sofia", Neighbourhood = "Borovo" });
-        //    this.db.Addresses.Add(new Address() { City = "Sofia", Neighbourhood = "Bukston" });
-        //    this.db.Addresses.Add(new Address() { City = "Sofia", Neighbourhood = "Slatina" });
-        //    this.db.Addresses.Add(new Address() { City = "Sofia", Neighbourhood = "Dragalevci" });
+        public void SeedAddresses()
+        {
+            this.db.Addresses.Add(new Address() { City = "Sofia", Neighborhood = "Center" });
+            this.db.Addresses.Add(new Address() { City = "Sofia", Neighborhood = "Liulin 9" });
+            this.db.Addresses.Add(new Address() { City = "Sofia", Neighborhood = "Drujba 1" });
+            this.db.Addresses.Add(new Address() { City = "Sofia", Neighborhood = "Drujba 2" });
+            this.db.Addresses.Add(new Address() { City = "Sofia", Neighborhood = "Mladost 2" });
+            this.db.Addresses.Add(new Address() { City = "Sofia", Neighborhood = "Mladost 1" });
+            this.db.Addresses.Add(new Address() { City = "Sofia", Neighborhood = "Mladost 3" });
+            this.db.Addresses.Add(new Address() { City = "Sofia", Neighborhood = "Mladost 4" });
+            this.db.Addresses.Add(new Address() { City = "Sofia", Neighborhood = "Ivan Vazov" });
+            this.db.Addresses.Add(new Address() { City = "Sofia", Neighborhood = "Geo Milev" });
+            this.db.Addresses.Add(new Address() { City = "Sofia", Neighborhood = "Pavlovo" });
+            this.db.Addresses.Add(new Address() { City = "Sofia", Neighborhood = "Krasno selo" });
+            this.db.Addresses.Add(new Address() { City = "Sofia", Neighborhood = "Krasna polqna" });
+            this.db.Addresses.Add(new Address() { City = "Sofia", Neighborhood = "Borovo" });
+            this.db.Addresses.Add(new Address() { City = "Sofia", Neighborhood = "Bukston" });
+            this.db.Addresses.Add(new Address() { City = "Sofia", Neighborhood = "Slatina" });
+            this.db.Addresses.Add(new Address() { City = "Sofia", Neighborhood = "Dragalevci" });
 
-        //    this.db.Addresses.Add(new Address() { City = "Pazardzhik", Neighbourhood = "Center" });
-        //    this.db.Addresses.Add(new Address() { City = "Pazardzhik", Neighbourhood = "Mladost" });
-        //    this.db.Addresses.Add(new Address() { City = "Pazardzhik", Neighbourhood = "Iztok" });
-        //    this.db.Addresses.Add(new Address() { City = "Pazardzhik", Neighbourhood = "Zapad" });
+            this.db.Addresses.Add(new Address() { City = "Pazardzhik", Neighborhood = "Center" });
+            this.db.Addresses.Add(new Address() { City = "Pazardzhik", Neighborhood = "Mladost" });
+            this.db.Addresses.Add(new Address() { City = "Pazardzhik", Neighborhood = "Iztok" });
+            this.db.Addresses.Add(new Address() { City = "Pazardzhik", Neighborhood = "Zapad" });
 
-        //    this.db.Addresses.Add(new Address() { City = "Plovdiv", Neighbourhood = "Hristo Botev" });
-        //    this.db.Addresses.Add(new Address() { City = "Plovdiv", Neighbourhood = "Trakiq" });
-        //    this.db.Addresses.Add(new Address() { City = "Plovdiv", Neighbourhood = "Izgrev" });
-        //    this.db.Addresses.Add(new Address() { City = "Plovdiv", Neighbourhood = "Stolipinovo" });
-        //}
+            this.db.Addresses.Add(new Address() { City = "Plovdiv", Neighborhood = "Hristo Botev" });
+            this.db.Addresses.Add(new Address() { City = "Plovdiv", Neighborhood = "Trakiq" });
+            this.db.Addresses.Add(new Address() { City = "Plovdiv", Neighborhood = "Izgrev" });
+            this.db.Addresses.Add(new Address() { City = "Plovdiv", Neighborhood = "Stolipinovo" });
+        }
     }
 }

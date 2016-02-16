@@ -11,19 +11,27 @@ using Microsoft.Owin.Security;
 using GoSport.Client.Models;
 using GoSport.Data.Models;
 using GoSport.Services.Contracts;
+using System.Web.Helpers;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using AutoMapper;
+using GoSport.Client.Infrastructure.Mapping;
+using GoSport.Client.ViewModels;
 
 namespace GoSport.Client.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private ISportCategoryService sportCategories;
+        private IAddressService addressService;
 
-        public AccountController(ISportCategoryService sportCategories)
+        public AccountController(ISportCategoryService sportCategories, IAddressService addressService)
         {
             this.sportCategories = sportCategories;
+            this.addressService = addressService;
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ISportCategoryService sportCategories)
@@ -39,9 +47,9 @@ namespace GoSport.Client.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -125,7 +133,7 @@ namespace GoSport.Client.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -145,7 +153,28 @@ namespace GoSport.Client.Controllers
         public ActionResult Register()
         {
             var categories = sportCategories.AllNames().ToList();
+            var cities = addressService.All().To<AddressViewModel>().ToList();
+
             ViewBag.Categories = categories;
+            ViewBag.Cities = cities;
+
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public JsonResult GetAllNeighbours(string city)
+        {
+            var neighbours = addressService.GetByCity(city).ToList();
+
+            return Json(neighbours);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult GetAllNeighbours()
+        {
+            //var neighbours = addressService.AllNeighbourhoodsInCity(city).ToList();
 
             return View();
         }
@@ -159,12 +188,12 @@ namespace GoSport.Client.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.UserName , Email = model.Email };
+                var user = new User { UserName = model.UserName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

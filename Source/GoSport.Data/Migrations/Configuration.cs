@@ -16,12 +16,14 @@ namespace GoSport.Data.Migrations
 
         protected override void Seed(GoSport.Data.ApplicationDbContext context)
         {
-            if (context.SportCategories.Any()) return;
+            if (context.Roles.Any()) return;
 
             var dataSeeder = new DataSeeder(context);
 
+            dataSeeder.SeedRoles();
             dataSeeder.SeedCategories();
             dataSeeder.SeedAddresses();
+            context.SaveChanges();
         }
     }
 }

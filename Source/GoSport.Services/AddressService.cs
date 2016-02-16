@@ -18,17 +18,19 @@ namespace GoSport.Services
             this.addressesDb = addressesDb;
         }
 
-        public IQueryable<string> AllCities()
+        public IQueryable<Address> All()
         {
-            return this.addressesDb.All().Select(x => x.City);
+            return this
+                .addressesDb.All()
+                .GroupBy(x=>x.City)
+                .Select(x=>x.FirstOrDefault());
         }
 
-        public IQueryable<string> AllNeighbourhoodsInCity(string cityName)
+        public IQueryable<Address> GetByCity(string cityName)
         {
             return this.addressesDb
                 .All()
-                .Where(x=>x.City==cityName)
-                .Select(x => x.Neighborhood);
+                .Where(x=>x.City==cityName);
         }
     }
 }

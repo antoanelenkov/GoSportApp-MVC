@@ -16,6 +16,7 @@ namespace GoSport.Client.App_Start
     using System.Data.Entity;
     using Models;
     using MvcTemplate.Services.Web;
+    using Data;
 
     public static class NinjectWebCommon 
     {

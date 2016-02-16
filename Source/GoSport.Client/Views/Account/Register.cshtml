@@ -36,7 +36,7 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword,"Confirm password *", new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.ConfirmPassword, "Confirm password *", new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
         </div>
@@ -44,13 +44,13 @@
     <div class="form-group">
         @Html.LabelFor(m => m.City, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.City, new SelectList(ViewBag.Cities, "Id", "City"), "None", new { @class = "form-control", id = "city-drop-down" })
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Neighborhood, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Neighborhood, new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.Neighborhood, new SelectList(new string[] { }), "None", new { @class = "form-control", id = "neighbour-drop-down" })
         </div>
     </div>
     <div class="form-group">
@@ -69,12 +69,6 @@
           .BindTo(ViewBag.Categories)
           .Separator(", ")
             )
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.FavouriteCategories, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.FavouriteCategories, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">

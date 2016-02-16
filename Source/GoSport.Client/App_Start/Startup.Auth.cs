@@ -7,6 +7,7 @@ using Microsoft.Owin.Security.Google;
 using Owin;
 using GoSport.Client.Models;
 using GoSport.Data.Models;
+using GoSport.Data;
 
 namespace GoSport.Client
 {

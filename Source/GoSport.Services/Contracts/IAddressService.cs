@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GoSport.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,8 @@ namespace GoSport.Services.Contracts
 {
     public interface IAddressService
     {
-        IQueryable<string> AllCities();
+        IQueryable<Address> All();
 
-        IQueryable<string> AllNeighbourhoodsInCity(string cityName);
+        IQueryable<Address> GetByCity(string cityName);
     }
 }

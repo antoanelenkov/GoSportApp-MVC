@@ -12,6 +12,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using GoSport.Client.Models;
 using GoSport.Data.Models;
+using GoSport.Data;
 
 namespace GoSport.Client
 {

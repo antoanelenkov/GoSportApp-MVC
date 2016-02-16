@@ -37,6 +37,10 @@ namespace GoSport.Client
                 "~/content/kendo-css/kendo.common.min.css",
                 "~/content/kendo-css/kendo.metro.min.css",
                 "~/content/kendo-css/kendo.default.*"));
+
+            //app
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+               "~/Scripts/application/application.js"));
         }
     }
 }
