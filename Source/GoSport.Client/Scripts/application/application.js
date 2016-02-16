@@ -1,11 +1,15 @@
 ﻿var citiesDropDown = $('#city-drop-down');
 var neighbourhoodsDropDown = $('#neighbour-drop-down');
 
+
+//Event listeners
 citiesDropDown.on('change', function () {
     var selectedCity = $('option:selected', citiesDropDown).text    ();
     getAllNeighbourhoods(selectedCity);
 })
 
+
+//Ajax requests
 function getAllNeighbourhoods(city) {
     $.ajax({
         type: 'POST',

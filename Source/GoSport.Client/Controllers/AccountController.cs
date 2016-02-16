@@ -165,7 +165,21 @@ namespace GoSport.Client.Controllers
         [AllowAnonymous]
         public JsonResult GetAllNeighbours(string city)
         {
-            var neighbours = addressService.GetByCity(city).ToList();
+            var neighbours = this.HttpContext.Cache[string.Format("Neighbours by city: {0}", city)];
+
+            if (neighbours == null)
+            {
+                this.HttpContext.Cache.Insert(
+                    string.Format("Neighbours by city: {0}", city),
+                    addressService.GetByCity(city).To<AddressViewModel>().ToList(),
+                    null,
+                    DateTime.Now.AddMinutes(60),
+                    TimeSpan.Zero
+                    );
+
+                neighbours = this.HttpContext.Cache[string.Format("Neighbours by city: {0}", city)];
+            }
+
 
             return Json(neighbours);
         }
