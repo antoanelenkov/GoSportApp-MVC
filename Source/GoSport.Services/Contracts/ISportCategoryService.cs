@@ -11,6 +11,8 @@ namespace GoSport.Services.Contracts
     {
         IQueryable<string> AllNames();
 
+        IQueryable<SportCategory> All();
+
         SportCategory Create(string name);
 
         bool UpdateById(int id, string name);

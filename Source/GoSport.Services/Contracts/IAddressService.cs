@@ -9,7 +9,7 @@ namespace GoSport.Services.Contracts
 {
     public interface IAddressService
     {
-        IQueryable<Address> All();
+        IQueryable<Address> AllCities();
 
         IQueryable<Address> GetByCity(string cityName);
     }

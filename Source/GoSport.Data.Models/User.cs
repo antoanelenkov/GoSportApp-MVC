@@ -65,7 +65,7 @@ namespace GoSport.Data.Models
         public virtual ICollection<SportCategory> FavouriteCategories
         {
             get { return this.favouriteCategories; }
-            set { this.FavouriteCategories = value; }
+            set { this.favouriteCategories = value; }
         }
 
         public virtual ICollection<Like> Likes

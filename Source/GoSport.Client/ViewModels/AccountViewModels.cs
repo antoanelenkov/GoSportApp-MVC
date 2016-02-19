@@ -1,5 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using GoSport.Client.Infrastructure.Mapping;
+using GoSport.Data.Models;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
+using AutoMapper;
+using System;
 
 namespace GoSport.Client.Models
 {
@@ -62,14 +67,14 @@ namespace GoSport.Client.Models
         public bool RememberMe { get; set; }
     }
 
-    public class RegisterViewModel
+    public class RegisterViewModel : IMapTo<User>
     {
         [Required]
         [Display(Name = "Name")]
         public string Name { get; set; }
 
         [Display(Name = "Detailed address")]
-        public string Address { get; set; }
+        public string ExactAddress { get; set; }
 
         public string City { get; set; }
 
@@ -79,14 +84,14 @@ namespace GoSport.Client.Models
         public string Facebook { get; set; }
 
         [Display(Name = "Profile pricture")]
-        public string AvatarUrl { get; set; }
+        public HttpPostedFileBase UplodadedImage { get; set; }
 
         [Display(Name = "About Me")]
         [DataType(DataType.MultilineText)]
         public string AboutMe { get; set; }
 
         [Display(Name = "Favourite sports")]
-        public string FavouriteCategories { get; set; }
+        public string FavourtieSports { get; set; }
 
         [Required]
         [EmailAddress]
@@ -107,6 +112,14 @@ namespace GoSport.Client.Models
         [Required]
         [Display(Name = "Username")]
         public string UserName { get; set; }
+
+        //public void CreateMappings(IMapperConfiguration configuration)
+        //{
+        //    configuration.CreateMap<RegisterViewModel, User>()
+        //        .ForMember(x => x.Address, 
+        //        opt => opt.ResolveUsing(model => new Address() { City = model.City, Neighborhood = model.Neighborhood }));
+        //}
+
     }
 
     public class ResetPasswordViewModel

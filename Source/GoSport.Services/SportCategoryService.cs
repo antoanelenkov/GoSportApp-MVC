@@ -18,6 +18,11 @@ namespace GoSport.Services
             this.sportCategoriesDb = sportCategoriesDb;
         }
 
+        public IQueryable<SportCategory> All()
+        {
+            return sportCategoriesDb.All();
+        }
+
         public IQueryable<string> AllNames()
         {
             return sportCategoriesDb.All().Select(x=>x.Name);

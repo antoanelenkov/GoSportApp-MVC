@@ -1,25 +1,21 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using GoSport.Client.Models;
-using GoSport.Data.Models;
-using GoSport.Services.Contracts;
-using System.Web.Helpers;
-using System.Collections.Generic;
-using Newtonsoft.Json;
-using AutoMapper;
-using GoSport.Client.Infrastructure.Mapping;
-using GoSport.Client.ViewModels;
-
-namespace GoSport.Client.Controllers
+﻿namespace GoSport.Client.Controllers
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Web.Mvc;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin.Security;
+    using GoSport.Client.Models;
+    using GoSport.Data.Models;
+    using GoSport.Services.Contracts;
+    using GoSport.Client.Infrastructure.Mapping;
+    using GoSport.Client.ViewModels;
+    using System.IO;
+    using System.Drawing;
+
     [Authorize]
     public class AccountController : BaseController
     {
@@ -27,18 +23,21 @@ namespace GoSport.Client.Controllers
         private ApplicationUserManager _userManager;
         private ISportCategoryService sportCategories;
         private IAddressService addressService;
+        private ISportCategoryService categoryService;
 
-        public AccountController(ISportCategoryService sportCategories, IAddressService addressService)
+        public AccountController(ISportCategoryService sportCategories, IAddressService addressService, ISportCategoryService categoryService)
         {
             this.sportCategories = sportCategories;
             this.addressService = addressService;
+            this.categoryService = categoryService;
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ISportCategoryService sportCategories)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ISportCategoryService sportCategories, ISportCategoryService categoryService)
         {
             UserManager = userManager;
             SignInManager = signInManager;
             this.sportCategories = sportCategories;
+            this.categoryService = categoryService;
         }
 
         public ApplicationSignInManager SignInManager
@@ -153,7 +152,7 @@ namespace GoSport.Client.Controllers
         public ActionResult Register()
         {
             var categories = sportCategories.AllNames().ToList();
-            var cities = addressService.All().To<AddressViewModel>().ToList();
+            var cities = addressService.AllCities().To<AddressViewModel>().ToList();
 
             ViewBag.Categories = categories;
             ViewBag.Cities = cities;
@@ -188,8 +187,6 @@ namespace GoSport.Client.Controllers
         [AllowAnonymous]
         public ActionResult GetAllNeighbours()
         {
-            //var neighbours = addressService.AllNeighbourhoodsInCity(city).ToList();
-
             return View();
         }
 
@@ -202,25 +199,72 @@ namespace GoSport.Client.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.UserName, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                var user = Mapper.Map<User>(model);
 
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                // address
+                var addressId = int.Parse(model.Neighborhood);
+                var all = addressService
+                    .AllCities().ToList();
+                var userAddress = addressService
+                    .AllCities()
+                    .FirstOrDefault(x => addressId == x.Id);
+
+                user.Address = userAddress != null ? userAddress : null;
+
+                // categories
+                var categoriesNames = model.FavourtieSports.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+                foreach (var name in categoriesNames)
+                {
+                    var currentCategory= this.categoryService.All().FirstOrDefault(x => x.Name == name);
+
+                    if(currentCategory!= null)
+                    {
+                        user.FavouriteCategories.Add(currentCategory);
+                    }
+                }
+
+                if (model.UplodadedImage != null)
+                {
+                    var avatarUrl = this.userAvatarPath + model.UserName + ".jpg";
+                    using (FileStream output = System.IO.File.OpenWrite(avatarUrl))
+                    {
+                        CopyStream(model.UplodadedImage.InputStream, output);
+                    }
+
+                    user.AvatarUrl = avatarUrl;
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                        // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                        // Send an email with this link
+                        // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                        return RedirectToAction("Index", "Home");
+                    }
 
                     return RedirectToAction("Index", "Home");
                 }
-                AddErrors(result);
+
+                // If we got this far, something failed, redisplay form
+                return View(model);
             }
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
+            return RedirectToAction("Index", "Home");
+        }
+
+        public static void CopyStream(Stream input, Stream output)
+        {
+            byte[] buffer = new byte[8 * 1024];
+            int len;
+            while ((len = input.Read(buffer, 0, buffer.Length)) > 0)
+            {
+                output.Write(buffer, 0, len);
+            }
         }
 
         //
@@ -477,6 +521,7 @@ namespace GoSport.Client.Controllers
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
+        private object path;
 
         private IAuthenticationManager AuthenticationManager
         {
