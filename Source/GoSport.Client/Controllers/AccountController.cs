@@ -15,6 +15,7 @@
     using GoSport.Client.ViewModels;
     using System.IO;
     using System.Drawing;
+    using System.Web.Security;
 
     [Authorize]
     public class AccountController : BaseController
@@ -82,7 +83,7 @@
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -98,18 +99,15 @@
             }
         }
 
-
-        [HttpGet]
-        [AllowAnonymous]
-        public ActionResult GetAllNeighbours()
-        {
-            return View();
-        }
-
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
         {
+            if (this.User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
 
@@ -154,10 +152,12 @@
                         CopyStream(model.UplodadedImage.InputStream, output);
                     }
 
-                    user.AvatarUrl = avatarUrl;
+                    user.AvatarUrl = avatarUrl;                 
                 }
 
-                return RedirectToAction("Index", "Home");
+                await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                return this.RedirectToAction("Index", "Home");
             }
 
             return View(model);

@@ -200,6 +200,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PageNotFoundController.cs" />
     <Compile Include="Controllers\SportCenterController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -212,6 +213,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\SportCenters\AddSportCenterViewModel.cs" />
     <Compile Include="ViewModels\SportCenters\SportCenterViewModel.cs" />
+    <Compile Include="ViewModels\Users\UserProfileViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -285,6 +287,7 @@
     <Content Include="Views\SportCenter\Add.cshtml" />
     <Content Include="Views\Shared\_SportCategoriesPartial.cshtml" />
     <Content Include="Views\Shared\_AddressPartial.cshtml" />
+    <Content Include="Views\User\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

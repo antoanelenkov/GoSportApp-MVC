@@ -34,12 +34,14 @@ namespace GoSport.Client.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Add()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Add(AddSportCenterViewModel model)
         {
