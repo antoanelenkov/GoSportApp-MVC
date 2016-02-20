@@ -10,30 +10,30 @@ citiesDropDown.on('change', function () {
 
 
 //Ajax requests
-function getAllNeighbourhoods(city) {
-    $.ajax({
-        type: 'POST',
-        url: 'GetAllNeighbours',
-        dataType: 'json',
-        data: JSON.stringify({ city: city }),
-        contentType: 'application/json; charset=utf-8',
-        success: function (data) {
-            neighbourhoodsDropDown.html('');
+//function getAllNeighbourhoods(city) {
+//    $.ajax({
+//        type: 'POST',
+//        url: '@Url.Action("FirstAjax", "AjaxTest")',
+//        dataType: 'json',
+//        data: JSON.stringify({ city: city }),
+//        contentType: 'application/json; charset=utf-8',
+//        success: function (data) {
+//            neighbourhoodsDropDown.html('');
 
-            if (!data.length) {
-                neighbourhoodsDropDown.append(
-                    $('<option></option>').val("None").html("None")
-                );
-            }
+//            if (!data.length) {
+//                neighbourhoodsDropDown.append(
+//                    $('<option></option>').val("None").html("None")
+//                );
+//            }
 
-            for (var i = 0; i < data.length; i++) {
-                neighbourhoodsDropDown.append(
-                    $('<option></option>').val(data[i].Id).html(data[i].Neighborhood)
-                );
-            }
-        },
-        error: function (data) {
-            console.log('error: ' + data)
-        }
-    });
-}
+//            for (var i = 0; i < data.length; i++) {
+//                neighbourhoodsDropDown.append(
+//                    $('<option></option>').val(data[i].Id).html(data[i].Neighborhood)
+//                );
+//            }
+//        },
+//        error: function (data) {
+//            console.log('error: ' + data)
+//        }
+//    });
+//}

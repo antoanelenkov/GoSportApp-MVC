@@ -22,6 +22,9 @@ namespace GoSport.Data.Models
         public int Id { get; set; }
 
         [Required]
+        public string Name { get; set; }
+
+        [Required]
         public string ExactAddress { get; set; }
 
         public int? AddressId { get; set; }

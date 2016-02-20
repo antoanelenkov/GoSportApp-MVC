@@ -25,11 +25,16 @@ namespace GoSport.Client.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult Add()
         {
-            var all = sportCenters.All().To<SportCenterViewModel>().ToList();
+            return View();
+        }
 
-            Response.Write("All sport centers are: " + all.Count());
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Add(AddSportCenterViewModel model)
+        {
             return View();
         }
     }

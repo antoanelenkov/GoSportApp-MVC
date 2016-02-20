@@ -1,4 +1,5 @@
-﻿using GoSport.Client.Infrastructure.Mapping;
+﻿using GoSport.Client.Infrastructure.Filters;
+using GoSport.Client.Infrastructure.Mapping;
 using GoSport.Data.Models;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,9 @@ namespace GoSport.Client.ViewModels.SportCenters
     public class AddSportCenterViewModel : IMapTo<SportCenter>
     {
         [Required]
+        public string Name { get; set; }
+
+        [Required]
         [Display(Name = "Exact Address")]
         public string ExactAddress { get; set; }
 
@@ -19,9 +23,11 @@ namespace GoSport.Client.ViewModels.SportCenters
         public string Neighborhood { get; set; }
 
         [Required]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
         [Required]
+        [ValidPhoneNumber]
         public string PhoneNumber { get; set; }
 
         [Display(Name = "Sport Center categories")]

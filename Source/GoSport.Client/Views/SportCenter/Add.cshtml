@@ -1,17 +1,82 @@
-﻿@{
-    Layout = null;
+﻿@using GoSport.Data.Models;
+@using GoSport.Client.ViewModels.SportCenters
+@model AddSportCenterViewModel
+@{
+    ViewBag.Title = "Add Sport center";
 }
 
-<!DOCTYPE html>
+<h2>@ViewBag.Title.</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
+@using (Html.BeginForm("Add", "SportCenter", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    <p>
+        Keep in mind that adding new sport center is always double checked from administator. So make sure that the provided phone number is correct!
+    </p>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name, "Name *", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @value = "dasdsadsa" })
+        </div>
     </div>
-</body>
-</html>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PhoneNumber, "Phone number *", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @value = "qwerty" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description, "Description *", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @value = "ddasdasd", @rows = 5 })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.UplodadedImage1, "Images", new { @class = "col-md-2 control-label" })
+        <div class="col-md-5 upload">
+            <input type="file" name="UplodadedImage1" />
+        </div>
+        <div class="col-md-5 upload">
+            <input type="file" name="UplodadedImage2" />
+        </div>
+        <div class="col-md-5 upload">
+            <input type="file" name="UplodadedImage3" />
+        </div>
+    </div>
+    <div class="form-group ">
+        <div class = "col-md-2 control-label"></div>
+        <div class="col-md-5 upload">
+            <input type="file" name="UplodadedImage4" />
+        </div>
+        <div class="col-md-5 upload">
+            <input type="file" name="UplodadedImage5" />
+        </div>
+        <div class="col-md-5 upload">
+            <input type="file" name="UplodadedImage6" />
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ExactAddress, "Exact Address *", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.ExactAddress, new { @class = "form-control", @value = "dasdsadsa@adfsf.bg" })
+        </div>
+    </div>
+    Html.RenderPartial("_AddressPartial");
+    <div class="form-group">
+        @Html.LabelFor(m => m.SportCenterCategories, new { @class = "col-md-2 control-label" })
+        @{Html.RenderPartial("_SportCategoriesPartial");
+        }
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Register sport center" />
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

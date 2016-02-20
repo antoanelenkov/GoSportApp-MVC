@@ -12,3 +12,32 @@
         @Html.DropDownListFor(m => m.Neighborhood, new SelectList(new string[] { }), "None", new { @class = "form-control", id = "neighbour-drop-down" })
     </div>
 </div>
+<script>
+    function getAllNeighbourhoods(city) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetAllNeighbours", "Account")',
+                dataType: 'json',
+                data: JSON.stringify({ city: city }),
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    neighbourhoodsDropDown.html('');
+
+                    if (!data.length) {
+                        neighbourhoodsDropDown.append(
+                            $('<option></option>').val("None").html("None")
+                        );
+                    }
+
+                    for (var i = 0; i < data.length; i++) {
+                        neighbourhoodsDropDown.append(
+                            $('<option></option>').val(data[i].Id).html(data[i].Neighborhood)
+                        );
+                    }
+                },
+                error: function (data) {
+                    console.log('error: ' + data)
+                }
+            });
+        }
+</script>

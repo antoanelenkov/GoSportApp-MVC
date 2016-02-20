@@ -116,8 +116,8 @@ namespace GoSport.Client.Models
 
         public void CreateMappings(IMapperConfiguration configuration)
         {
-            configuration.CreateMap<RegisterViewModel, User>()
-                .ForSourceMember(src => src.AddressModel, opt => opt.Ignore());
+            //configuration.CreateMap<RegisterViewModel, User>()
+            //    .ForSourceMember(src => src.AddressModel, opt => opt.Ignore());
         }
     }
 
