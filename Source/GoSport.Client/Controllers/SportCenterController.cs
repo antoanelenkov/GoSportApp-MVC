@@ -9,16 +9,23 @@ using GoSport.Client.Infrastructure.Mapping;
 
 namespace GoSport.Client.Controllers
 {
-    public class SportCenterController : Controller
+    public class SportCenterController : BaseController
     {
         ISportCenterService sportCenters;
 
-        public SportCenterController(ISportCenterService sportCenters)
-        {
-            this.sportCenters = sportCenters;
-        }
+        public SportCenterController(ISportCategoryService sportCategories, IAddressService addressService, ISportCategoryService categoryService)
+            :base(sportCategories,addressService,categoryService)
+        { }
 
         public ActionResult SportCenters()
+        {
+            var all = sportCenters.All().To<SportCenterViewModel>().ToList();
+
+            Response.Write("All sport centers are: " + all.Count());
+            return View();
+        }
+
+        public ActionResult Add()
         {
             var all = sportCenters.All().To<SportCenterViewModel>().ToList();
 

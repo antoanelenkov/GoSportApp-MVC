@@ -21,23 +21,18 @@
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private ISportCategoryService sportCategories;
-        private IAddressService addressService;
-        private ISportCategoryService categoryService;
+
 
         public AccountController(ISportCategoryService sportCategories, IAddressService addressService, ISportCategoryService categoryService)
+            :base(sportCategories,addressService,categoryService)
         {
-            this.sportCategories = sportCategories;
-            this.addressService = addressService;
-            this.categoryService = categoryService;
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ISportCategoryService sportCategories, ISportCategoryService categoryService)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ISportCategoryService sportCategories, IAddressService addressService, ISportCategoryService categoryService)
+            : base(sportCategories, addressService, categoryService)
         {
             UserManager = userManager;
             SignInManager = signInManager;
-            this.sportCategories = sportCategories;
-            this.categoryService = categoryService;
         }
 
         public ApplicationSignInManager SignInManager
@@ -137,12 +132,6 @@
         [AllowAnonymous]
         public ActionResult Register()
         {
-            var categories = sportCategories.AllNames().ToList();
-            var cities = addressService.AllCities().To<AddressViewModel>().ToList();
-
-            Session["Categories"] = categories;
-            Session["Cities"] = cities;
-
             return View();
         }
 
@@ -166,7 +155,7 @@
 
                 // address
                 int addressId;
-                if (int.TryParse(model.Neighborhood,out addressId))
+                if (int.TryParse(model.Neighborhood ,out addressId))
                 {
                     addressService.AddAddressForUser(user.Id, addressId);
                 }

@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Web;
 using AutoMapper;
 using System;
+using GoSport.Client.ViewModels;
 
 namespace GoSport.Client.Models
 {
@@ -67,7 +68,7 @@ namespace GoSport.Client.Models
         public bool RememberMe { get; set; }
     }
 
-    public class RegisterViewModel : IMapTo<User>
+    public class RegisterViewModel : IMapTo<User> ,IHaveCustomMappings
     {
         [Required]
         [Display(Name = "Name")]
@@ -78,9 +79,9 @@ namespace GoSport.Client.Models
 
         public string City { get; set; }
 
-        public string Neighborhood { get; set; }
+        public string Neighborhood { get; set; }        
 
-        [Display(Name = "Facebook profile")]
+       [Display(Name = "Facebook profile")]
         public string Facebook { get; set; }
 
         [Display(Name = "Profile pricture")]
@@ -112,6 +113,12 @@ namespace GoSport.Client.Models
         [Required]
         [Display(Name = "Username")]
         public string UserName { get; set; }
+
+        public void CreateMappings(IMapperConfiguration configuration)
+        {
+            configuration.CreateMap<RegisterViewModel, User>()
+                .ForSourceMember(src => src.AddressModel, opt => opt.Ignore());
+        }
     }
 
     public class ResetPasswordViewModel

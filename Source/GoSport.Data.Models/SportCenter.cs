@@ -24,7 +24,7 @@ namespace GoSport.Data.Models
         [Required]
         public string ExactAddress { get; set; }
 
-        public int AddressId { get; set; }
+        public int? AddressId { get; set; }
 
         [Required]
         public virtual Address Address { get; set; }

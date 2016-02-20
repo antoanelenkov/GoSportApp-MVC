@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GoSport.Services.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,9 @@ namespace GoSport.Client.Controllers
 {
     public class HomeController : BaseController
     {
+        public HomeController(ISportCategoryService sportCategories, IAddressService addressService, ISportCategoryService categoryService)
+            :base(sportCategories,addressService,categoryService)
+        { }
 
         public ActionResult Index()
         {
