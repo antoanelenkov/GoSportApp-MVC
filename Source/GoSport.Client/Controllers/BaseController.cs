@@ -12,7 +12,7 @@ namespace GoSport.Client.Controllers
 {
     public abstract  class BaseController : Controller
     {
-        protected  string userAvatarPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Pictures\Users\");
+        protected  string userAvatarPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Content\Avatars\");
 
         public ICacheService Cache { get; set; }
 

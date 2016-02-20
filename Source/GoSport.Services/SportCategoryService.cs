@@ -20,16 +20,6 @@ namespace GoSport.Services
             this.usersDb = usersDb;
         }
 
-        public IQueryable<SportCategory> All()
-        {
-            return sportCategoriesDb.All();
-        }
-
-        public IQueryable<string> AllNames()
-        {
-            return sportCategoriesDb.All().Select(x => x.Name);
-        }
-
         public void AddCategoriesForUser(string[] categories, string userId)
         {
             var user = usersDb.All().FirstOrDefault(x => x.Id == userId);
@@ -44,9 +34,22 @@ namespace GoSport.Services
                 }
                 else
                 {
+                    if (string.IsNullOrWhiteSpace(name)) continue;
                     sportCategoriesDb.Add(new SportCategory() { Name = name, Users = new List<User>() { user } });
                 }
             }
+
+            sportCategoriesDb.SaveChanges();
+        }
+
+        public IQueryable<SportCategory> All()
+        {
+            return sportCategoriesDb.All();
+        }
+
+        public IQueryable<string> AllNames()
+        {
+            return sportCategoriesDb.All().Select(x => x.Name);
         }
 
         public SportCategory Create(string name)

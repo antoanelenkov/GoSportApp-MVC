@@ -283,7 +283,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Avatars\" />
     <Folder Include="Infrastructure\" />
-    <Folder Include="Pictures\Users\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

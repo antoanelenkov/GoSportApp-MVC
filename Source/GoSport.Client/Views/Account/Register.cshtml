@@ -1,4 +1,6 @@
-﻿@model GoSport.Client.Models.RegisterViewModel
+﻿@using GoSport.Data.Models;
+@using GoSport.Client.ViewModels
+@model GoSport.Client.Models.RegisterViewModel
 @{
     ViewBag.Title = "Register";
 }
@@ -59,9 +61,9 @@
     <div class="form-group">
         @Html.LabelFor(m => m.City, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownListFor(m => m.City, new SelectList(ViewBag.Cities, "Id", "City"), "None", new { @class = "form-control", id = "city-drop-down" })
+            @Html.DropDownListFor(m => m.City, new SelectList((IEnumerable<AddressViewModel>)Session["Cities"], "Id", "City"), "None", new { @class = "form-control", id = "city-drop-down" })
         </div>
-    </div>
+     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Neighborhood, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -81,7 +83,7 @@
           .Name("FavourtieSports")
           .Filter("startswith")
           .Placeholder("Type your favourite sports...")
-          .BindTo(ViewBag.Categories)
+          .BindTo((IEnumerable<string>)Session["Categories"])
           .Separator(", ")
             )
         </div>

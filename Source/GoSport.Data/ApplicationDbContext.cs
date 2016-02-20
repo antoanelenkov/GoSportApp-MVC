@@ -43,7 +43,16 @@ namespace GoSport.Data
         public override int SaveChanges()
         {
             this.ApplyAuditInfoRules();
-            return base.SaveChanges();
+            try
+            {
+                return base.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+
+            }
+            return 0;
+
         }
 
         private void ApplyAuditInfoRules()

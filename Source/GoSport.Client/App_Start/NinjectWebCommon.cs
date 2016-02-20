@@ -69,7 +69,7 @@ namespace GoSport.Client.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             //Database 
-            kernel.Bind<DbContext>().To<ApplicationDbContext>();
+            kernel.Bind<DbContext>().To<ApplicationDbContext>().InRequestScope();
             kernel.Bind(typeof(IDeletableEntityRepository<>)).To(typeof(DeletableEntityRepository<>));
 
             //Models Services
