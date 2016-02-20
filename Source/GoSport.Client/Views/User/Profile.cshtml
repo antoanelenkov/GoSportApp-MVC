@@ -8,15 +8,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            @if(Model.AvatarUrl.Length!=0)
-            {
-                <img src="@String.Format("/Content/Avatars/{0}.jpg",this.User.Identity.GetUserName())" alt="avatar" height=300 width=300 class="img-rounded" />
-            }
-            else
-            {
-                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRQYvnZBfeVGEm4cbMDXLlr-xOat9DQungOjV8sUGPcHgE1u3BE" alt="avatar" height=200 width=200 class="img-rounded" />
-            }
-
+            <img src="@String.Format("/Content/Avatars/{0}.jpg",this.User.Identity.GetUserName())"
+                 onError="this.onerror = null; this.src='https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRQYvnZBfeVGEm4cbMDXLlr-xOat9DQungOjV8sUGPcHgE1u3BE';"
+                 alt="avatar" height=300 width=300 class="img-rounded" />
         </div>
         <div class="col-md-8 control-label lead">
             <div class="col-md-3">Username:</div>
@@ -32,6 +26,38 @@
         </div>
         <div class="col-md-8 control-label lead">
             <div class="col-md-3">Description :</div>
-            <div class="col-md-3">@Model.AboutMe</div>
+            @if (Model.AboutMe != null)
+            {
+                <div class="col-md-6">@Model.AboutMe</div>
+            }
+            else
+            {
+                <div class="col-md-6">No description added...</div>
+            }
+        </div>
+        <div class="col-md-8 control-label lead">
+            <div class="col-md-3">Facebook :</div>
+            @if (Model.Facebook != null)
+            {
+                <a href="@Model.Facebook" class="col-md-6">facebook profile</a>
+            }
+            else
+            {
+                <div class="col-md-6">No Facebook added...</div>
+            }
+        </div>
+        <div class="col-md-8 control-label lead">
+            <div class="col-md-3">Favourite sports :</div>
+            @if (Model.FavouriteCategories.Count() > 0)
+            {
+                foreach (var category in Model.FavouriteCategories)
+                {
+                    <span>[@category.Name] </span>
+                }
+            }
+            else
+            {
+                <div class="col-md-6">No favourite sports added...</div>
+            }
         </div>
     </div>
