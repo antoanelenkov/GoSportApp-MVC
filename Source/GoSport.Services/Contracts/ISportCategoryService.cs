@@ -18,5 +18,7 @@ namespace GoSport.Services.Contracts
         bool UpdateById(int id, string name);
 
         bool DeleteById(int id);
+
+        void AddCategoriesForUser(string[] categories, string userId);
     }
 }

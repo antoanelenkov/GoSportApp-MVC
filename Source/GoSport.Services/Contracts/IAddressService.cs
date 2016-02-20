@@ -11,6 +11,11 @@ namespace GoSport.Services.Contracts
     {
         IQueryable<Address> AllCities();
 
+        IQueryable<Address> All();
+
+
         IQueryable<Address> GetByCity(string cityName);
+
+        void AddAddressForUser(string userId,int neighbourId);
     }
 }
