@@ -1,39 +1,30 @@
 ﻿var citiesDropDown = $('#city-drop-down');
 var neighbourhoodsDropDown = $('#neighbour-drop-down');
+var addImageBtn = $('#add-image-button');
 
 
 //Event listeners
 citiesDropDown.on('change', function () {
-    var selectedCity = $('option:selected', citiesDropDown).text    ();
+    var selectedCity = $('option:selected', citiesDropDown).text();
     getAllNeighbourhoods(selectedCity);
 })
 
+addImageBtn.on('click', function () {
+    var lastFileName = $(":file").last().attr('name');
+    var elementToAppendNewOne = $(":file").last().parent();
+    numberOfimage = null;
 
-//Ajax requests
-//function getAllNeighbourhoods(city) {
-//    $.ajax({
-//        type: 'POST',
-//        url: '@Url.Action("FirstAjax", "AjaxTest")',
-//        dataType: 'json',
-//        data: JSON.stringify({ city: city }),
-//        contentType: 'application/json; charset=utf-8',
-//        success: function (data) {
-//            neighbourhoodsDropDown.html('');
+    if (lastFileName) numberOfimage = lastFileName.substr(lastFileName.length - 1);
 
-//            if (!data.length) {
-//                neighbourhoodsDropDown.append(
-//                    $('<option></option>').val("None").html("None")
-//                );
-//            }
+    if (!numberOfimage && isNaN(numberOfimage * 1)) {
+        return;
+    }
+    var nextNumberOfImage = numberOfimage * 1 + 1;
 
-//            for (var i = 0; i < data.length; i++) {
-//                neighbourhoodsDropDown.append(
-//                    $('<option></option>').val(data[i].Id).html(data[i].Neighborhood)
-//                );
-//            }
-//        },
-//        error: function (data) {
-//            console.log('error: ' + data)
-//        }
-//    });
-//}
+    if (nextNumberOfImage.toString().length > 1) return;
+
+    var html = ' <div class="col-md-5 upload"><input type="file" name="UplodadedImage' + nextNumberOfImage + '" /></div>';
+
+    elementToAppendNewOne.after(html);
+})
+
