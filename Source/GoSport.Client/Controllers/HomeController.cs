@@ -1,4 +1,6 @@
-﻿using GoSport.Services.Contracts;
+﻿using GoSport.Client.Infrastructure.Mapping;
+using GoSport.Client.ViewModels.SportCenters;
+using GoSport.Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,26 +11,42 @@ namespace GoSport.Client.Controllers
 {
     public class HomeController : BaseController
     {
-        public HomeController(ISportCategoryService sportCategories, IAddressService addressService, ISportCategoryService categoryService)
-            :base(sportCategories,addressService,categoryService)
-        { }
+        private ISportCenterService sportCenterService;
 
-        public ActionResult Index()
+        public HomeController(
+            ISportCategoryService sportCategories,
+            IAddressService addressService,
+            ISportCategoryService categoryService,
+            ISportCenterService sportCenterService)
+            : base(sportCategories, addressService, categoryService)
         {
-            return View();
+            this.sportCenterService = sportCenterService;
+
+            ViewBag.AllSportCentersCount = sportCenterService.All().Count();
+            ViewBag.ItemsPerPage = 2;
         }
+
+        [HttpGet]
+        public ActionResult Index(int id = 0)
+        {
+            var model = sportCenterService.All()
+                .OrderByDescending(x=>x.CreatedOn)
+                .Skip(id * (int)ViewBag.ItemsPerPage)
+                .Take((int)ViewBag.ItemsPerPage)
+                .To<SportCenterViewModel>()
+                .ToList();
+
+            return View(model);
+        }
+
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }

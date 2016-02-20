@@ -49,12 +49,6 @@ namespace GoSport.Data.Models
             set { this.categories = value; }
         }
 
-        public virtual ICollection<string> PicturesUrls
-        {
-            get { return this.picturesUrls; }
-            set { this.picturesUrls = value; }
-        }
-
         public virtual ICollection<Comment> Comments
         {
             get { return this.comments; }

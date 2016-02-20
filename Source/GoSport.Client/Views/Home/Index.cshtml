@@ -1,4 +1,8 @@
-﻿
+﻿@using GoSport.Client.ViewModels.SportCenters;
+@model IEnumerable<SportCenterViewModel>
+@{
+    ViewBag.Title = "Add Sport center";
+}
 @{
     ViewBag.Title = "Home Page";
 }
@@ -7,3 +11,29 @@
     <p class="lead">The site where you can find where to practice your favourite sport!</p>
     <p><a href="/Home/About" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
+@foreach (var center in Model)
+{
+    <div class="container">
+        <h1>@center.Name</h1>
+
+        <div class="row">
+            <div class="col-md-2">Exact Address: </div>
+            <div class="col-md-3">@center.ExactAddress</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">City: </div>
+            <div class="col-md-3">@center.Address.City</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">Neighbour: </div>
+            <div class="col-md-3">@center.Address.Neighborhood</div>
+        </div>
+    </div>
+
+}
+@for (int i = 0; i < ViewBag.AllSportCentersCount / ViewBag.ItemsPerPage; i++)
+{
+    <a class="btn btn-primary" href='@String.Format("/Home/Index/{0}",@i)'>@i</a>
+}
+
+

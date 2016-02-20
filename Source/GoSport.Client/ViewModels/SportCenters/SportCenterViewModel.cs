@@ -9,6 +9,24 @@ namespace GoSport.Client.ViewModels.SportCenters
 {
     public class SportCenterViewModel : IMapFrom<SportCenter>
     {
-        public string City { get; set; }
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string ExactAddress { get; set; }
+
+        public int? AddressId { get; set; }
+
+        public virtual Address Address { get; set; }
+
+        public string Description { get; set; }
+
+        public string PhoneNumber { get; set; }
+
+        public SportCenterRating Rating { get; set; }
+
+        public ICollection<SportCategory> Categories { get; set; }
+       
+        public  ICollection<Comment> Comments { get; set; }
     }
 }

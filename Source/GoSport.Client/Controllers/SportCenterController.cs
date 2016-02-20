@@ -125,7 +125,7 @@ namespace GoSport.Client.Controllers
                 imagesUrls.Add(image);
             }
 
-            sportCenterService.AddImagesToSportCenter(model.Name,imagesUrls);
+            //sportCenterService.AddImagesToSportCenter(model.Name,imagesUrls);
         }
 
         private string SaveImage(HttpPostedFileBase image, string sportCenterName, int picturerNumber)

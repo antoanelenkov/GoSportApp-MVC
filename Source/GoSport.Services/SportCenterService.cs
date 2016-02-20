@@ -18,17 +18,17 @@ namespace GoSport.Services
             this.sportCentersDb = sportCentersDb;
         }
 
-        public void AddImagesToSportCenter(string sportCenterName, IEnumerable<string> imagesUrl)
-        {
-            var sportCenter = sportCentersDb.All().FirstOrDefault(x => x.Name == sportCenterName);
+        //public void AddImagesToSportCenter(string sportCenterName, IEnumerable<string> imagesUrl)
+        //{
+        //    var sportCenter = sportCentersDb.All().FirstOrDefault(x => x.Name == sportCenterName);
 
-            foreach (var imgUrl in imagesUrl)
-            {
-                sportCenter.PicturesUrls.Add(imgUrl);
-            }
+        //    foreach (var imgUrl in imagesUrl)
+        //    {
+        //        sportCenter.PicturesUrls.Add(imgUrl);
+        //    }
 
-            sportCentersDb.SaveChanges();
-        }
+        //    sportCentersDb.SaveChanges();
+        //}
 
         public IQueryable<SportCenter> All()
         {
