@@ -13,14 +13,40 @@ namespace GoSport.Services
     {
         private IDeletableEntityRepository<SportCategory> sportCategoriesDb;
         private IDeletableEntityRepository<User> usersDb;
+        private IDeletableEntityRepository<SportCenter> sportCentesDb;
 
-        public SportCategoryService(IDeletableEntityRepository<SportCategory> sportCategoriesDb, IDeletableEntityRepository<User> usersDb)
+        public SportCategoryService(
+            IDeletableEntityRepository<SportCategory> sportCategoriesDb, 
+            IDeletableEntityRepository<User> usersDb,
+            IDeletableEntityRepository<SportCenter> sportCentesDb)
         {
             this.sportCategoriesDb = sportCategoriesDb;
             this.usersDb = usersDb;
+            this.sportCentesDb =  sportCentesDb;
         }
 
-        public void AddCategoriesForUser(string[] categories, string userId)
+        public void AddCategoriesForSportCenter(IEnumerable<string> categoriesNames, string sportCenterName)
+        {
+            var sportCenter = sportCentesDb.All().FirstOrDefault(x => x.Name == sportCenterName);
+
+            foreach (var name in categoriesNames)
+            {
+                var currentCategory = this.sportCategoriesDb.All().FirstOrDefault(x => x.Name == name);
+
+                if (currentCategory != null)
+                {
+                    currentCategory.SportCenters.Add(sportCenter);
+                }
+                else
+                {
+                    if (string.IsNullOrWhiteSpace(name)) continue;
+                    sportCategoriesDb.Add(new SportCategory() { Name = name, SportCenters = new List<SportCenter>() { sportCenter } });
+                }
+            }
+            sportCategoriesDb.SaveChanges();
+        }
+
+        public void AddCategoriesForUser(IEnumerable<string> categories, string userId)
         {
             var user = usersDb.All().FirstOrDefault(x => x.Id == userId);
 

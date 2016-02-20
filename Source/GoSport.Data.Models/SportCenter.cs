@@ -9,14 +9,14 @@ namespace GoSport.Data.Models
     public class SportCenter : AuditInfo, IDeletableEntity
     {
         private ICollection<string> picturesUrls;
-        private ICollection<SportCategory> sportCategories;
+        private ICollection<SportCategory> categories;
         private ICollection<Comment> comments;
 
         public SportCenter()
         {
             this.picturesUrls = new HashSet<string>();
             this.comments = new HashSet<Comment>();
-            this.sportCategories = new HashSet<SportCategory>();
+            this.categories = new HashSet<SportCategory>();
         }
 
         public int Id { get; set; }
@@ -29,7 +29,6 @@ namespace GoSport.Data.Models
 
         public int? AddressId { get; set; }
 
-        [Required]
         public virtual Address Address { get; set; }
 
         [Required]
@@ -44,10 +43,10 @@ namespace GoSport.Data.Models
 
         public bool IsDeleted { get; set; }
 
-        public virtual ICollection<SportCategory> SportCategories
+        public virtual ICollection<SportCategory> Categories
         {
-            get { return this.sportCategories; }
-            set { this.sportCategories = value; }
+            get { return this.categories; }
+            set { this.categories = value; }
         }
 
         public virtual ICollection<string> PicturesUrls

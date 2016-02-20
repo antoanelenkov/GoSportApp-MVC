@@ -92,7 +92,7 @@ namespace GoSport.Client.Models
         public string AboutMe { get; set; }
 
         [Display(Name = "Favourite sports")]
-        public string FavourtieSports { get; set; }
+        public string SportCategories { get; set; }
 
         [Required]
         [EmailAddress]

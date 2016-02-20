@@ -16,7 +16,7 @@
     function getAllNeighbourhoods(city) {
             $.ajax({
                 type: 'POST',
-                url: '@Url.Action("GetAllNeighbours", "Account")',
+                url: '@Url.Action("GetAllNeighbours", "Address")',
                 dataType: 'json',
                 data: JSON.stringify({ city: city }),
                 contentType: 'application/json; charset=utf-8',

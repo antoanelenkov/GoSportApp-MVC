@@ -16,6 +16,7 @@ namespace GoSport.Client.Controllers
     public abstract class BaseController : Controller
     {
         protected string userAvatarPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Content\Avatars\");
+        protected string sportCenterPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Content\SportCenters\");
 
         protected ISportCategoryService sportCategories;
         protected IAddressService addressService;
@@ -60,6 +61,16 @@ namespace GoSport.Client.Controllers
 
             ViewBag.Categories = categories;
             ViewBag.Cities = cities;
+        }
+
+        public void CopyStream(Stream input, Stream output)
+        {
+            byte[] buffer = new byte[8 * 1024];
+            int len;
+            while ((len = input.Read(buffer, 0, buffer.Length)) > 0)
+            {
+                output.Write(buffer, 0, len);
+            }
         }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)

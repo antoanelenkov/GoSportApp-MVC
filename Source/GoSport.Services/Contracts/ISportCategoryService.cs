@@ -19,6 +19,7 @@ namespace GoSport.Services.Contracts
 
         bool DeleteById(int id);
 
-        void AddCategoriesForUser(string[] categories, string userId);
+        void AddCategoriesForUser(IEnumerable<string> categories, string userId);
+        void AddCategoriesForSportCenter(IEnumerable<string> categoriesNames, string sportCenterName);
     }
 }

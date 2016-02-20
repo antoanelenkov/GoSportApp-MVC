@@ -18,6 +18,18 @@ namespace GoSport.Services
             this.sportCentersDb = sportCentersDb;
         }
 
+        public void AddImagesToSportCenter(string sportCenterName, IEnumerable<string> imagesUrl)
+        {
+            var sportCenter = sportCentersDb.All().FirstOrDefault(x => x.Name == sportCenterName);
+
+            foreach (var imgUrl in imagesUrl)
+            {
+                sportCenter.PicturesUrls.Add(imgUrl);
+            }
+
+            sportCentersDb.SaveChanges();
+        }
+
         public IQueryable<SportCenter> All()
         {
             return this.sportCentersDb.All();
@@ -26,6 +38,7 @@ namespace GoSport.Services
         public SportCenter Create(SportCenter model)
         {
             this.sportCentersDb.Add(model);
+            this.sportCentersDb.SaveChanges();
 
             return model;
         }

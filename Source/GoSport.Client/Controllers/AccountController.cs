@@ -98,28 +98,6 @@
             }
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        public JsonResult GetAllNeighbours(string city)
-        {
-            var neighbours = this.HttpContext.Cache[string.Format("Neighbours by city: {0}", city)];
-
-            if (neighbours == null)
-            {
-                this.HttpContext.Cache.Insert(
-                    string.Format("Neighbours by city: {0}", city),
-                    addressService.GetByCity(city).To<AddressViewModel>().ToList(),
-                    null,
-                    DateTime.Now.AddMinutes(60),
-                    TimeSpan.Zero
-                    );
-
-                neighbours = this.HttpContext.Cache[string.Format("Neighbours by city: {0}", city)];
-            }
-
-
-            return Json(neighbours);
-        }
 
         [HttpGet]
         [AllowAnonymous]
@@ -161,9 +139,9 @@
                 }
                
                 // categories
-                if (model.FavourtieSports != null)
+                if (model.SportCategories != null)
                 {
-                    var categoriesNames = model.FavourtieSports.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                    var categoriesNames = model.SportCategories.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
                     categoryService.AddCategoriesForUser(categoriesNames, user.Id);
                 }
@@ -183,16 +161,6 @@
             }
 
             return View(model);
-        }
-
-        public static void CopyStream(Stream input, Stream output)
-        {
-            byte[] buffer = new byte[8 * 1024];
-            int len;
-            while ((len = input.Read(buffer, 0, buffer.Length)) > 0)
-            {
-                output.Write(buffer, 0, len);
-            }
         }
 
         //

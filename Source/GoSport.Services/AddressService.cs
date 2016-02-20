@@ -13,11 +13,16 @@ namespace GoSport.Services
     {
         private IDeletableEntityRepository<Address> addressesDb;
         private IDeletableEntityRepository<User> usersDb;
+        private IDeletableEntityRepository<SportCenter> sportCenters;
 
-        public AddressService(IDeletableEntityRepository<Address> addressesDb, IDeletableEntityRepository<User> usersDb)
+        public AddressService(
+            IDeletableEntityRepository<Address> addressesDb, 
+            IDeletableEntityRepository<User> usersDb,
+             IDeletableEntityRepository<SportCenter> sportCenters)
         {
             this.addressesDb = addressesDb;
             this.usersDb = usersDb;
+            this.sportCenters = sportCenters;
         }
 
         public IQueryable<Address> AllCities()
@@ -50,6 +55,17 @@ namespace GoSport.Services
             user.AddressId = address.Id;
 
             usersDb.SaveChanges();
+        }
+
+        public void AddAddressForSportCenter(string sportCenterName, int neighbourId)
+        {
+            var address = addressesDb.All()
+              .FirstOrDefault(x => neighbourId == x.Id);
+
+            var spotrtCenter = sportCenters.All().FirstOrDefault(x => x.Name == sportCenterName);
+            spotrtCenter.AddressId = address.Id;
+
+            sportCenters.SaveChanges();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace GoSport.Client.Infrastructure.Filters
             
             var numberAsString = value as string;
 
-            return Regex.Match(numberAsString, @"^(\+[0-9]{9})$").Success;
+            return Regex.Match(numberAsString, "[0-9]*").Success;
         }
     }
 }

@@ -17,7 +17,7 @@
 
         public override IQueryable<T> All()
         {
-            return base.All().Where(x => !x.IsDeleted);
+              return base.All().Where(x => !x.IsDeleted);
         }
 
         public IQueryable<T> AllWithDeleted()

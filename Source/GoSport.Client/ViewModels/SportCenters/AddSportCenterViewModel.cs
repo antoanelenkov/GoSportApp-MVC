@@ -31,18 +31,24 @@ namespace GoSport.Client.ViewModels.SportCenters
         public string PhoneNumber { get; set; }
 
         [Display(Name = "Sport Center categories")]
-        public string SportCenterCategories { get; set; }
+        public string SportCategories { get; set; }
 
-        [Display(Name = "Picture 1")]
         public HttpPostedFileBase UplodadedImage1 { get; set; }
 
-        [Display(Name = "Picture 2")]
         public HttpPostedFileBase UplodadedImage2 { get; set; }
 
-        [Display(Name = "Picture 3")]
         public HttpPostedFileBase UplodadedImage3 { get; set; }
 
-        [Display(Name = "Picture 3")]
         public HttpPostedFileBase UplodadedImage4 { get; set; }
+
+        public HttpPostedFileBase UplodadedImage5 { get; set; }
+
+        public HttpPostedFileBase UplodadedImage6 { get; set; }
+
+        public HttpPostedFileBase UplodadedImage7 { get; set; }
+
+        public HttpPostedFileBase UplodadedImage8 { get; set; }
+
+        public HttpPostedFileBase UplodadedImage9 { get; set; }
     }
 }
