@@ -18,17 +18,39 @@ namespace GoSport.Services
             this.sportCentersDb = sportCentersDb;
         }
 
-        //public void AddImagesToSportCenter(string sportCenterName, IEnumerable<string> imagesUrl)
-        //{
-        //    var sportCenter = sportCentersDb.All().FirstOrDefault(x => x.Name == sportCenterName);
+        public void AddImagesToSportCenter(string sportCenterName, IEnumerable<string> imagesUrl)
+        {
+            var sportCenter = sportCentersDb.All().FirstOrDefault(x => x.Name == sportCenterName);
+            var urls = new StringBuilder();
 
-        //    foreach (var imgUrl in imagesUrl)
-        //    {
-        //        sportCenter.PicturesUrls.Add(imgUrl);
-        //    }
+            foreach (var imgUrl in imagesUrl)
+            {
+                urls.Append("," + imgUrl);
+            }
+            sportCenter.PicturesUrls= urls.ToString();
 
-        //    sportCentersDb.SaveChanges();
-        //}
+            sportCentersDb.SaveChanges();
+        }
+
+        public IQueryable<string> GetImagesForSportCenter(string sportCenterName)
+        {
+            var sportCenter = sportCentersDb.All().FirstOrDefault(x => x.Name == sportCenterName);
+
+            var urlsAsString = sportCenter.PicturesUrls;
+            if (urlsAsString != null)
+            {
+                return urlsAsString
+                    .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                    .AsQueryable();
+            }
+
+            return new List<string>().AsQueryable();
+        }
+
+        public bool UpdateById(int id, string name)
+        {
+            throw new NotImplementedException();
+        }
 
         public IQueryable<SportCenter> All()
         {
@@ -44,11 +66,6 @@ namespace GoSport.Services
         }
 
         public bool DeleteById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool UpdateById(int id, string name)
         {
             throw new NotImplementedException();
         }

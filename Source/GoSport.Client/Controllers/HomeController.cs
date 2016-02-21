@@ -29,6 +29,9 @@ namespace GoSport.Client.Controllers
         [HttpGet]
         public ActionResult Index(int id = 0)
         {
+            if (id < 0) id = 0;
+            if (id > 0)id = id - 1; 
+
             var model = sportCenterService.All()
                 .OrderByDescending(x=>x.CreatedOn)
                 .Skip(id * (int)ViewBag.ItemsPerPage)
@@ -36,8 +39,31 @@ namespace GoSport.Client.Controllers
                 .To<SportCenterViewModel>()
                 .ToList();
 
+            foreach (var sportCenter in model)
+            {
+                sportCenter.Images = SanitizeImageUrls(sportCenterService.GetImagesForSportCenter(sportCenter.Name).ToArray());
+            }
+
             return View(model);
         }
+
+        //[HttpGet]
+        //public ActionResult SportCentersByCategory(string category)
+        //{
+        //    var model = sportCategories.All()
+        //        .Where(x=>x.Name==category)
+        //        .Select(x=>x.SportCenters)
+        //        .Take((int)ViewBag.ItemsPerPage)
+        //        .To<SportCenterViewModel>()
+        //        .ToList();
+
+        //    foreach (var sportCenter in model)
+        //    {
+        //        sportCenter.Images = SanitizeImageUrls(sportCenterService.GetImagesForSportCenter(sportCenter.Name).ToArray());
+        //    }
+
+        //    return View(model);
+        //}
 
 
         public ActionResult About()
@@ -48,6 +74,17 @@ namespace GoSport.Client.Controllers
         public ActionResult Contact()
         {
             return View();
+        }
+
+        private ICollection<string> SanitizeImageUrls(string[] urls)
+        {
+            for (int i = 0; i < urls.Count(); i++)
+            {
+                var startPoint = urls[i].IndexOf("Content");
+                urls[i] = urls[i].Substring(startPoint - 1);
+            }
+
+            return urls;
         }
     }
 }

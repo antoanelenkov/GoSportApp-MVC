@@ -25,6 +25,8 @@ namespace GoSport.Client.ViewModels.SportCenters
 
         public SportCenterRating Rating { get; set; }
 
+        public ICollection<string> Images { get; set; }
+
         public ICollection<SportCategory> Categories { get; set; }
        
         public  ICollection<Comment> Comments { get; set; }

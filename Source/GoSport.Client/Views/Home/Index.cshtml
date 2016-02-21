@@ -6,6 +6,7 @@
 @{
     ViewBag.Title = "Home Page";
 }
+<script src="~/Scripts/ImageSlider/jquery.bxslider.js"></script>
 <div class="jumbotron">
     <h1>GO SPORT</h1>
     <p class="lead">The site where you can find where to practice your favourite sport!</p>
@@ -13,27 +14,60 @@
 </div>
 @foreach (var center in Model)
 {
+    <hr />
     <div class="container">
-        <h1>@center.Name</h1>
-
-        <div class="row">
+        <h1 class="col text-center">@center.Name</h1>
+        <ul class="bxslider">
+            @foreach (var img in center.Images)
+            {
+                <li><img src="@img" height=300 width=300 class="img-rounded" /></li>
+            }
+        </ul>
+        <div class="row col-md-offset-3">
             <div class="col-md-2">Exact Address: </div>
-            <div class="col-md-3">@center.ExactAddress</div>
+            <div class="col-md-4">@center.ExactAddress</div>
         </div>
-        <div class="row">
+        <div class="row col-md-offset-3">
             <div class="col-md-2">City: </div>
-            <div class="col-md-3">@center.Address.City</div>
+            <div class="col-md-4">@center.Address.City</div>
         </div>
-        <div class="row">
+        <div class="row col-md-offset-3">
             <div class="col-md-2">Neighbour: </div>
-            <div class="col-md-3">@center.Address.Neighborhood</div>
+            <div class="col-md-4">@center.Address.Neighborhood</div>
+        </div>
+        <div class="row col-md-offset-3">
+            <div class="col-md-2">Description: </div>
+            <div class="col-md-4">@center.Description   </div>
+        </div>
+        <div class="row col-md-offset-3">
+            <div class="col-md-2">Practiced sports: </div>
+            @foreach (var item in center.Categories)
+            {
+                <a href="\Home\Index\@item.Name"class="badge">@item.Name</a>
+            }
         </div>
     </div>
+    <hr />
+}
+<div class="row col-md-offset-5">
+    @for (int i = 0; i < ViewBag.AllSportCentersCount / ViewBag.ItemsPerPage; i++)
+    {
+        <a class="btn btn-primary" href='@String.Format("/Home/Index/{0}",@i)'>@(i+1)</a>
+    }
+</div>
 
-}
-@for (int i = 0; i < ViewBag.AllSportCentersCount / ViewBag.ItemsPerPage; i++)
-{
-    <a class="btn btn-primary" href='@String.Format("/Home/Index/{0}",@i)'>@i</a>
-}
+<script src="~/Scripts/ImageSlider/jquery.bxslider.min.js"></script>
+<link href="~/Content/ImageSlider/jquery.bxslider.css" rel="stylesheet" />
+<script>
+    $(document).ready(function () {
+        $('.bxslider').bxSlider(
+            {
+                pagerCustom: '#bx-pager',
+                adaptiveHeight: true,
+                slideWidth: 500,
+                auto: true
+            });
+    });
+</script>
 
 

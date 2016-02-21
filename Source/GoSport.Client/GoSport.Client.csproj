@@ -206,6 +206,7 @@
     </Compile>
     <Compile Include="Infrastructure\Constants.cs" />
     <Compile Include="Infrastructure\Filters\ValidPhoneNumberAttribute.cs" />
+    <Compile Include="Infrastructure\ImageHelper.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\AddressViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
@@ -218,6 +219,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\ImageSlider\jquery.bxslider.css" />
     <Content Include="Content\kendo-css\kendo.black.min.css" />
     <Content Include="Content\kendo-css\kendo.common.min.css" />
     <Content Include="favicon.ico" />
@@ -230,6 +232,8 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\ImageSlider\jquery.bxslider.js" />
+    <Content Include="Scripts\ImageSlider\jquery.bxslider.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -292,6 +296,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Avatars\" />
+    <Folder Include="Content\ImageSlider\images\" />
     <Folder Include="Content\SportCenters\" />
   </ItemGroup>
   <ItemGroup>

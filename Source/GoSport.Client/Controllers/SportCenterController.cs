@@ -8,6 +8,7 @@ using GoSport.Client.ViewModels.SportCenters;
 using GoSport.Client.Infrastructure.Mapping;
 using GoSport.Data.Models;
 using System.IO;
+using GoSport.Client.Infrastructure;
 
 namespace GoSport.Client.Controllers
 {
@@ -81,62 +82,51 @@ namespace GoSport.Client.Controllers
 
             if (model.UplodadedImage1 != null)
             {
-                var image = SaveImage(model.UplodadedImage1, model.Name, 1);
+                var image = ImageHelper.SaveImage(this.sportCenterPath,model.UplodadedImage1, model.Name, 1);
                 imagesUrls.Add(image);
             }
             if (model.UplodadedImage2 != null)
             {
-                var image = SaveImage(model.UplodadedImage1, model.Name, 2);
+                var image = ImageHelper.SaveImage(this.sportCenterPath, model.UplodadedImage2, model.Name, 2);
                 imagesUrls.Add(image);
             }
             if (model.UplodadedImage3 != null)
             {
-                var image = SaveImage(model.UplodadedImage1, model.Name, 3);
+                var image = ImageHelper.SaveImage(this.sportCenterPath, model.UplodadedImage3, model.Name, 3);
                 imagesUrls.Add(image);
             }
             if (model.UplodadedImage4 != null)
             {
-                var image = SaveImage(model.UplodadedImage1, model.Name, 4);
+                var image = ImageHelper.SaveImage(this.sportCenterPath, model.UplodadedImage4, model.Name, 4);
                 imagesUrls.Add(image);
             }
             if (model.UplodadedImage5 != null)
             {
-                var image = SaveImage(model.UplodadedImage1, model.Name, 5);
+                var image = ImageHelper.SaveImage(this.sportCenterPath, model.UplodadedImage5, model.Name, 5);
                 imagesUrls.Add(image);
             }
             if (model.UplodadedImage6 != null)
             {
-                var image = SaveImage(model.UplodadedImage1, model.Name, 6);
+                var image = ImageHelper.SaveImage(this.sportCenterPath, model.UplodadedImage6, model.Name, 6);
                 imagesUrls.Add(image);
             }
             if (model.UplodadedImage7 != null)
             {
-                var image = SaveImage(model.UplodadedImage1, model.Name, 7);
+                var image = ImageHelper.SaveImage(this.sportCenterPath, model.UplodadedImage7, model.Name,7);
                 imagesUrls.Add(image);
             }
             if (model.UplodadedImage8 != null)
             {
-                var image = SaveImage(model.UplodadedImage1, model.Name, 8);
+                var image = ImageHelper.SaveImage(this.sportCenterPath, model.UplodadedImage8, model.Name, 8);
                 imagesUrls.Add(image);
             }
             if (model.UplodadedImage9 != null)
             {
-                var image = SaveImage(model.UplodadedImage1, model.Name, 9);
+                var image = ImageHelper.SaveImage(this.sportCenterPath, model.UplodadedImage9, model.Name, 9);
                 imagesUrls.Add(image);
             }
 
-            //sportCenterService.AddImagesToSportCenter(model.Name,imagesUrls);
-        }
-
-        private string SaveImage(HttpPostedFileBase image, string sportCenterName, int picturerNumber)
-        {
-            var imageUrl = this.sportCenterPath  + sportCenterName  + picturerNumber + ".jpg";
-            using (FileStream output = System.IO.File.OpenWrite(imageUrl))
-            {
-                CopyStream(image.InputStream, output);
-            }
-
-            return imageUrl;
+            sportCenterService.AddImagesToSportCenter(model.Name,imagesUrls);
         }
     }
 }

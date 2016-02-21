@@ -38,3 +38,7 @@ div.upload input {
     opacity: 0 !important;
     overflow: hidden !important;
 }
+
+.bx-wrapper img {
+    margin: 0 auto;
+}

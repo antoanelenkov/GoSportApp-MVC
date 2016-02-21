@@ -16,6 +16,7 @@
     using System.IO;
     using System.Drawing;
     using System.Web.Security;
+    using Infrastructure;
 
     [Authorize]
     public class AccountController : BaseController
@@ -149,7 +150,7 @@
                     var avatarUrl = this.userAvatarPath + model.UserName + ".jpg";
                     using (FileStream output = System.IO.File.OpenWrite(avatarUrl))
                     {
-                        CopyStream(model.UplodadedImage.InputStream, output);
+                        ImageHelper.CopyStream(model.UplodadedImage.InputStream, output);
                     }
 
                     user.AvatarUrl = avatarUrl;                 

@@ -35,6 +35,11 @@ namespace GoSport.Client
                 "~/Scripts/kendo/kendo.all.min.js",
                 "~/Scripts/kendo/kendo.aspnetmvc.min.js"));
 
+            //Jquery vizualization
+            bundles.Add(new StyleBundle("~/bundles/Slider").Include(
+                "~/Scripts/ImageSlider/jquery.bxslider.js",
+                "~/Scripts/ImageSlider/jquery.bxslider.min.js"));
+
             //app
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                "~/Scripts/application/application.js"));
@@ -45,6 +50,9 @@ namespace GoSport.Client
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
                 "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/Slider").Include(
+               "~/Content/ImageSlider/jquery.bxslider.css"));
 
             bundles.Add(new StyleBundle("~/Content/kendo-css").Include(
                 "~/content/kendo-css/kendo.common.min.css",

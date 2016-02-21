@@ -43,6 +43,8 @@ namespace GoSport.Data.Models
 
         public bool IsDeleted { get; set; }
 
+        public string PicturesUrls { get; set; }
+
         public virtual ICollection<SportCategory> Categories
         {
             get { return this.categories; }

@@ -19,6 +19,12 @@ namespace GoSport.Client
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
+            routes.MapRoute(
+           name: "ByCategories",
+           url: "{controller}/{action}/{category}",
+           defaults: new { controller = "Home", action = "Index" }
+       );
+
             //routes.MapRoute(
             //    name: "Error",
             //    url: "{*url}",
