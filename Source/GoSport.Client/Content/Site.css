@@ -24,14 +24,20 @@ textarea {
 }
 
 div.upload {
-    margin-left: 15px;
+    background-color: #d3ffea;
+        padding-right: 15px;
+    margin-right: 15px;
     width: 80px;
-    height: 50px;
-    background: url(https://pdsupport.files.wordpress.com/2012/02/email-group-upload-button.png?w=670);
+    height: 22px;
+    background: url(https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQSs-UVTOm7xZhozm0qKHBxg8EULJWo4Tsw2mZFBIZr8TeguH87qg);
     overflow: hidden;
 }
 
     div.upload input {
+        width:110px;
+        margin-left:10px;
+        margin-right:10px;
+        background-color: #d3ffea;
         display: block !important;
         width: 157px !important;
         height: 57px !important;
@@ -46,7 +52,7 @@ div.upload {
 /* 'star-rating' component */
 .starRate {
     position: relative;
-    margin:3px;
+    margin: 3px;
     overflow: hidden;
     zoom: 1;
 }
@@ -103,30 +109,31 @@ div.upload {
         left: 90px;
         width: 100%;
     }
+
 body {
     background-color: #d3ffea;
 }
 
-.sport-center-info{
+.sport-center-info {
 }
 
-hr{
+hr {
     display: block;
     height: 1px;
     border: 0;
     border-top: 1px solid #18bc9c;
     margin: 1em 0;
-    padding: 0; 
+    padding: 0;
 }
 
-.add-comment{
-    background-color:#b7f7d8;
-    border-radius:10px;
+.add-comment {
+    background-color: #b7f7d8;
+    border-radius: 10px;
 }
 
-.comment{
-    padding:20px;
-    margin-top:20px;
-    border-radius:10px;
-    background-color:#B7F7D8;
+.comment {
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: #B7F7D8;
 }

@@ -199,6 +199,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PageNotFoundController.cs" />
+    <Compile Include="Controllers\RatingController.cs" />
     <Compile Include="Controllers\SportCenterController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -213,6 +214,7 @@
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Rating\RatingViewModel.cs" />
     <Compile Include="ViewModels\SportCenters\AddSportCenterViewModel.cs" />
     <Compile Include="ViewModels\SportCenters\SportCenterViewModel.cs" />
     <Compile Include="ViewModels\Users\UserProfileViewModel.cs" />

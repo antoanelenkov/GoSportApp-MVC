@@ -61,6 +61,7 @@ namespace GoSport.Services
 
         public SportCenter Create(SportCenter model)
         {
+            model.Rating = new SportCenterRating();
             this.sportCentersDb.Add(model);
             this.sportCentersDb.SaveChanges();
 
@@ -78,6 +79,45 @@ namespace GoSport.Services
             var user = usersDb.All().FirstOrDefault(x => x.Id == authorId);
             sportCenter.Comments.Add(new Comment() { SportCenterId = sportCenterId, Content = content, Author= user });
             sportCentersDb.SaveChanges();
+        }
+
+        public double AddRatingToSportCenter(int sportCenterId,string authorId, string ratingType, int value)
+        {
+            var sportCenter = sportCentersDb.All().FirstOrDefault(x => x.Id == sportCenterId);
+            var user = usersDb.All().FirstOrDefault(x => x.Id == authorId);
+
+            if (ratingType == "Comfort")
+            {
+                sportCenter.Rating.Comfort = (sportCenter.Rating.Comfort * sportCenter.Rating.ComfortVotes + value) / ++sportCenter.Rating.ComfortVotes;
+                sportCentersDb.SaveChanges();
+                return sportCenter.Rating.Comfort;
+            }
+            else if (ratingType == "Trainers")
+            {
+                sportCenter.Rating.Trainers = (sportCenter.Rating.Trainers * sportCenter.Rating.TrainersVotes + value) / ++sportCenter.Rating.TrainersVotes;       
+                sportCentersDb.SaveChanges();
+                return sportCenter.Rating.Trainers;
+            }
+            else if (ratingType == "Price")
+            {
+                sportCenter.Rating.Price = (sportCenter.Rating.Price * sportCenter.Rating.PriceVotes + value) / ++sportCenter.Rating.PriceVotes;
+                sportCentersDb.SaveChanges();
+                return sportCenter.Rating.Price;
+            }
+            else if (ratingType == "Service")
+            {
+                sportCenter.Rating.Service = (sportCenter.Rating.Service * sportCenter.Rating.ServiceVotes + value) / ++sportCenter.Rating.ServiceVotes;
+                sportCentersDb.SaveChanges();
+                return sportCenter.Rating.Service;
+            }
+            else if (ratingType == "Total")
+            {
+                sportCenter.Rating.Total = (sportCenter.Rating.Total * sportCenter.Rating.TotalVotes + value) / ++sportCenter.Rating.TotalVotes;
+                sportCentersDb.SaveChanges();
+                return sportCenter.Rating.Total;
+            }
+
+            throw new ArgumentException("invalid type provided");
         }
     }
 }

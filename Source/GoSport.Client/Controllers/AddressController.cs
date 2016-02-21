@@ -26,6 +26,8 @@ namespace GoSport.Client.Controllers
         [HttpPost]
         public JsonResult GetAllNeighbours(string city)
         {
+            if (!ModelState.IsValid) throw new HttpException("Invalid parameters passed");
+
             var neighbours = this.HttpContext.Cache[string.Format("Neighbours by city: {0}", city)];
 
             if (neighbours == null)

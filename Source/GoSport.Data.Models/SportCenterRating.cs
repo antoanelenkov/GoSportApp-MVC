@@ -10,14 +10,24 @@ namespace GoSport.Data.Models
 
         public virtual SportCenter SportCenter { get; set; }
 
-        public int Total { get; set; }
+        public double Total { get; set; }
 
-        public int Comfort { get; set; }
+        public int TotalVotes { get; set; }
 
-        public int Service { get; set; }
+        public double Comfort { get; set; }
 
-        public int Price { get; set; }
+        public int ComfortVotes { get; set; }
 
-        public int Trainers { get; set; }
+        public double Service { get; set; }
+
+        public int ServiceVotes { get; set; }
+
+        public double Price { get; set; }
+
+        public int PriceVotes { get; set; }
+
+        public double Trainers { get; set; }
+
+        public int TrainersVotes { get; set; }
     }
 }
