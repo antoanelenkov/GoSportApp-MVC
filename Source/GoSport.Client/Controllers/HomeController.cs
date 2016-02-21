@@ -24,7 +24,7 @@ namespace GoSport.Client.Controllers
             this.sportCenterService = sportCenterService;
 
             ViewBag.AllSportCentersCount = sportCenterService.All().Count();
-            ViewBag.ItemsPerPage = 2;
+            ViewBag.ItemsPerPage = 4;
         }
 
         [HttpGet]

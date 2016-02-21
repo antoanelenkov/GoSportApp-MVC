@@ -1,0 +1,27 @@
+﻿@using GoSport.Data.Models
+@model IEnumerable<Comment>
+<h1 class="row text-center">Comments</h1>
+@if (Model.OrderByDescending(x => x.CreatedOn).ToList().Count() == 0)
+{
+        <<div class="row text-center">No comments added yet...</div>
+}
+else
+{
+    foreach (var comment in @Model.OrderByDescending(x => x.CreatedOn).ToList())
+    {
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 comment">
+                <div class="row">
+                    <div class="col-md-3">@comment.Author.Name:  </div>
+                    <div class="col-md-9">"@comment.Content"</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">Date created:  </div>
+                    <i class="col-md-4">@comment.CreatedOn</i>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    }
+}

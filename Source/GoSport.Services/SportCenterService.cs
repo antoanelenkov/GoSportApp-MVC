@@ -12,10 +12,12 @@ namespace GoSport.Services
     public class SportCenterService : ISportCenterService
     {
         private IDeletableEntityRepository<SportCenter> sportCentersDb;
+        private IDeletableEntityRepository<User> usersDb;
 
-        public SportCenterService(IDeletableEntityRepository<SportCenter> sportCentersDb)
+        public SportCenterService(IDeletableEntityRepository<SportCenter> sportCentersDb, IDeletableEntityRepository<User> usersDb)
         {
             this.sportCentersDb = sportCentersDb;
+            this.usersDb = usersDb;
         }
 
         public void AddImagesToSportCenter(string sportCenterName, IEnumerable<string> imagesUrl)
@@ -68,6 +70,14 @@ namespace GoSport.Services
         public bool DeleteById(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public void AddCommentToSportCenter(int sportCenterId, string authorId, string content)
+        {
+            var sportCenter = sportCentersDb.All().FirstOrDefault(x => x.Id == sportCenterId);
+            var user = usersDb.All().FirstOrDefault(x => x.Id == authorId);
+            sportCenter.Comments.Add(new Comment() { SportCenterId = sportCenterId, Content = content, Author= user });
+            sportCentersDb.SaveChanges();
         }
     }
 }

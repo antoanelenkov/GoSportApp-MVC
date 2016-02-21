@@ -46,7 +46,7 @@ div.upload {
 /* 'star-rating' component */
 .starRate {
     position: relative;
-    margin: 20px;
+    margin:3px;
     overflow: hidden;
     zoom: 1;
 }
@@ -108,4 +108,25 @@ body {
 }
 
 .sport-center-info{
+}
+
+hr{
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #18bc9c;
+    margin: 1em 0;
+    padding: 0; 
+}
+
+.add-comment{
+    background-color:#b7f7d8;
+    border-radius:10px;
+}
+
+.comment{
+    padding:20px;
+    margin-top:20px;
+    border-radius:10px;
+    background-color:#B7F7D8;
 }

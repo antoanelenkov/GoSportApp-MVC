@@ -28,6 +28,15 @@ addImageBtn.on('click', function () {
     elementToAppendNewOne.after(html);
 });
 
+$('#add-comment').on('click', function (ev) {
+    var btn = $(ev.target);
+    if (btn.text() === 'Add Comment') btn.text('Cancel');
+    else btn.text('Add Comment');
+    $('.add-comment').toggleClass('hidden');
+
+    return false;
+});
+
 
 
 

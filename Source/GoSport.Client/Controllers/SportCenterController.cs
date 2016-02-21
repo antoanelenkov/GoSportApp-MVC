@@ -9,6 +9,8 @@ using GoSport.Client.Infrastructure.Mapping;
 using GoSport.Data.Models;
 using System.IO;
 using GoSport.Client.Infrastructure;
+using Microsoft.AspNet.Identity;
+using GoSport.Client.ViewModels.Comments;
 
 namespace GoSport.Client.Controllers
 {
@@ -45,12 +47,25 @@ namespace GoSport.Client.Controllers
         [Authorize]
         public ActionResult Details(int id)
         {
+
+
             var model = Mapper.Map<SportCenterViewModel>(sportCenterService.All().FirstOrDefault(x => x.Id == id));
 
             model.Images = ImageHelper.SanitizeImageUrls(sportCenterService.GetImagesForSportCenter(model.Name).ToArray());
 
             return View(model);
         }
+
+        //[HttpPost]
+        //[Authorize]
+        //public ActionResult Details(int id)
+        //{
+        //    var model = Mapper.Map<SportCenterViewModel>(sportCenterService.All().FirstOrDefault(x => x.Id == id));
+
+        //    model.Images = ImageHelper.SanitizeImageUrls(sportCenterService.GetImagesForSportCenter(model.Name).ToArray());
+
+        //    return View(model);
+        //}
 
         [HttpPost]
         [Authorize]
@@ -138,6 +153,24 @@ namespace GoSport.Client.Controllers
             }
 
             sportCenterService.AddImagesToSportCenter(model.Name, imagesUrls);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult AddComment(int sportCenterId,string content)
+        {
+            if(ModelState.IsValid && sportCenterId!=0 && content != null && content != string.Empty)
+            {
+                sportCenterService.AddCommentToSportCenter(sportCenterId, User.Identity.GetUserId(), content);
+                var sportCenter = sportCenterService.All().FirstOrDefault(x => x.Id == sportCenterId);
+                //var model = new List<CommentViewModel>();
+                var allComments = sportCenter.Comments.ToList();
+
+                return RedirectToAction("Details", new { @id = sportCenterId });
+                //return PartialView("_AllCommentsPartial", allComments);
+            }
+
+            throw new HttpException(400, "Invalid comment");
         }
     }
 }

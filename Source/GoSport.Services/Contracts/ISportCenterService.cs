@@ -15,6 +15,8 @@ namespace GoSport.Services.Contracts
 
         void AddImagesToSportCenter(string sportCenterName,IEnumerable<string> imagesUrl);
 
+        void AddCommentToSportCenter(int sportCenterId,string authorId,string content);
+
         IQueryable<string> GetImagesForSportCenter(string sportCenterName);
 
         bool UpdateById(int id, string name);
