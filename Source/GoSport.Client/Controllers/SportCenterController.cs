@@ -41,6 +41,17 @@ namespace GoSport.Client.Controllers
             return View();
         }
 
+        [HttpGet]
+        [Authorize]
+        public ActionResult Details(int id)
+        {
+            var model = Mapper.Map<SportCenterViewModel>(sportCenterService.All().FirstOrDefault(x => x.Id == id));
+
+            model.Images = ImageHelper.SanitizeImageUrls(sportCenterService.GetImagesForSportCenter(model.Name).ToArray());
+
+            return View(model);
+        }
+
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
@@ -82,7 +93,7 @@ namespace GoSport.Client.Controllers
 
             if (model.UplodadedImage1 != null)
             {
-                var image = ImageHelper.SaveImage(this.sportCenterPath,model.UplodadedImage1, model.Name, 1);
+                var image = ImageHelper.SaveImage(this.sportCenterPath, model.UplodadedImage1, model.Name, 1);
                 imagesUrls.Add(image);
             }
             if (model.UplodadedImage2 != null)
@@ -112,7 +123,7 @@ namespace GoSport.Client.Controllers
             }
             if (model.UplodadedImage7 != null)
             {
-                var image = ImageHelper.SaveImage(this.sportCenterPath, model.UplodadedImage7, model.Name,7);
+                var image = ImageHelper.SaveImage(this.sportCenterPath, model.UplodadedImage7, model.Name, 7);
                 imagesUrls.Add(image);
             }
             if (model.UplodadedImage8 != null)
@@ -126,7 +137,7 @@ namespace GoSport.Client.Controllers
                 imagesUrls.Add(image);
             }
 
-            sportCenterService.AddImagesToSportCenter(model.Name,imagesUrls);
+            sportCenterService.AddImagesToSportCenter(model.Name, imagesUrls);
         }
     }
 }

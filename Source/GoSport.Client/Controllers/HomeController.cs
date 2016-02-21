@@ -1,4 +1,5 @@
-﻿using GoSport.Client.Infrastructure.Mapping;
+﻿using GoSport.Client.Infrastructure;
+using GoSport.Client.Infrastructure.Mapping;
 using GoSport.Client.ViewModels.SportCenters;
 using GoSport.Services.Contracts;
 using System;
@@ -41,7 +42,7 @@ namespace GoSport.Client.Controllers
 
             foreach (var sportCenter in model)
             {
-                sportCenter.Images = SanitizeImageUrls(sportCenterService.GetImagesForSportCenter(sportCenter.Name).ToArray());
+                sportCenter.Images = ImageHelper.SanitizeImageUrls(sportCenterService.GetImagesForSportCenter(sportCenter.Name).ToArray());
             }
 
             return View(model);
@@ -74,17 +75,6 @@ namespace GoSport.Client.Controllers
         public ActionResult Contact()
         {
             return View();
-        }
-
-        private ICollection<string> SanitizeImageUrls(string[] urls)
-        {
-            for (int i = 0; i < urls.Count(); i++)
-            {
-                var startPoint = urls[i].IndexOf("Content");
-                urls[i] = urls[i].Substring(startPoint - 1);
-            }
-
-            return urls;
         }
     }
 }

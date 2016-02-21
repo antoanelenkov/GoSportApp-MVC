@@ -16,13 +16,13 @@
 {
     <hr />
     <div class="container">
-        <h1 class="col text-center">@center.Name</h1>
+        <h1 class="col text-center"><a href="/SportCenter/Details/@center.Id">@center.Name</a></h1>
         <ul class="bxslider">
             @foreach (var img in center.Images)
             {
                 <li><img src="@img" height=300 width=300 class="img-rounded" /></li>
             }
-        </ul>
+        </ul>   
         <div class="row col-md-offset-3">
             <div class="col-md-2">Exact Address: </div>
             <div class="col-md-4">@center.ExactAddress</div>
@@ -43,19 +43,67 @@
             <div class="col-md-2">Practiced sports: </div>
             @foreach (var item in center.Categories)
             {
-                <a href="\Home\Index\@item.Name"class="badge">@item.Name</a>
+                <a href="\Home\Index\@item.Name" class="badge">@item.Name</a>
             }
+        </div>
+        <h2 class="row text-center">Rating</h2>
+        <div class="row col-md-offset-3">
+            <div class="col-md-2">Comfort: </div>
+            <div class="col-md-2">@(center.Rating != null ? center.Rating.Comfort.ToString() : "Not rated yet...") </div>
+        </div>
+        <div class="row col-md-offset-3">
+            <div class="col-md-2">Price: </div>
+            <div class="col-md-2">@(center.Rating != null ? center.Rating.Price.ToString() : "Not rated yet...") </div>
+        </div>
+        <div class="row col-md-offset-3">
+            <div class="col-md-2">Service: </div>
+            <div class="col-md-2">@(center.Rating != null ? center.Rating.Service.ToString() : "Not rated yet...") </div>
+        </div>
+        <div class="row col-md-offset-3">
+            <div class="col-md-2">Trainer/Trainers: </div>
+            <div class="col-md-2">@(center.Rating != null ? center.Rating.Trainers.ToString() : "Not rated yet...") </div>
+        </div>
+        <br />
+        <div class="row col-md-offset-3">
+            <div class="col-md-2">Total: </div>
+            <div class="col-md-2">@(center.Rating != null ? center.Rating.Total.ToString() : "Not rated yet...") </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="starRate">
+                    <input type="button" class="btn-sm btn btn-primary" value="1" />
+                    <input type="button" class="btn-sm btn btn-primary" value="2" />
+                    <input type="button" class="btn-sm btn btn-primary" value="3" />
+                    <input type="button" class="btn-sm btn btn-primary" value="4" />
+                    <input type="button" class="btn-sm btn btn-primary" value="5" />
+                </div>
+            }
+        </div>
+        <h1 class="row text-center">Comments</h1>
+        @{ViewBag.CommentAuthor = @center.Comments.OrderByDescending(x => x.CreatedOn).FirstOrDefault();}
+        @if (ViewBag.CommentAuthor != null)
+        {
+            <div class="row col-md-offset-3">
+                <div class="col-md-2">@ViewBag.CommentAuthor.Author.Name:  </div>
+                <div class="col-md-2">"@ViewBag.CommentAuthor.Content"</div>
+            </div>
+            <div class="row col-md-offset-3">
+                <div class="col-md-2">Date created:  </div>
+                <i class="col-md-4">@ViewBag.CommentAuthor.CreatedOn</i>
+            </div>
+        }
+        <br />
+        <div class="row col-md-offset-5">
+            <a href="#" class="btn btn-primary text-center">Show More</a>
         </div>
     </div>
     <hr />
-}
+            }
 <div class="row col-md-offset-5">
     @for (int i = 0; i < ViewBag.AllSportCentersCount / ViewBag.ItemsPerPage; i++)
     {
-        <a class="btn btn-primary" href='@String.Format("/Home/Index/{0}",@i)'>@(i+1)</a>
+        <a class="btn btn-primary" href='@String.Format("/Home/Index/{0}",@i)'>@(i + 1)</a>
     }
 </div>
-
 <script src="~/Scripts/ImageSlider/jquery.bxslider.min.js"></script>
 <link href="~/Content/ImageSlider/jquery.bxslider.css" rel="stylesheet" />
 <script>
@@ -64,10 +112,11 @@
             {
                 pagerCustom: '#bx-pager',
                 adaptiveHeight: true,
-                slideWidth: 500,
+                slideWidth: 800,
                 auto: true
             });
     });
 </script>
+
 
 

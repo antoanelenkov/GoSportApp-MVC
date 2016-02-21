@@ -222,6 +222,7 @@
     <Content Include="Content\ImageSlider\jquery.bxslider.css" />
     <Content Include="Content\kendo-css\kendo.black.min.css" />
     <Content Include="Content\kendo-css\kendo.common.min.css" />
+    <Content Include="Content\Rating\star_rate.gif" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -249,6 +250,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Home\Index\Rating\star_rate.gif" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -292,6 +294,7 @@
     <Content Include="Views\Shared\_SportCategoriesPartial.cshtml" />
     <Content Include="Views\Shared\_AddressPartial.cshtml" />
     <Content Include="Views\User\Profile.cshtml" />
+    <Content Include="Views\SportCenter\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

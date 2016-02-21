@@ -37,7 +37,7 @@ namespace GoSport.Data.Models
         [Required]
         public string PhoneNumber { get; set; }
 
-        public SportCenterRating Rating { get; set; }
+        public virtual SportCenterRating Rating { get; set; }
 
         public DateTime? DeletedOn { get; set; }
 
