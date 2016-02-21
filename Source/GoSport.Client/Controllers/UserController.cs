@@ -26,7 +26,7 @@ namespace GoSport.Client.Controllers
         }
 
         [HttpGet]
-        public ActionResult Profile()
+        public new  ActionResult Profile()
         {
             var currentUserId = User.Identity.GetUserId();
             var userFromDb = userService.GetUserById(currentUserId);

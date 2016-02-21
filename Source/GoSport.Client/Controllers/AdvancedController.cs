@@ -26,14 +26,17 @@ namespace GoSport.Client.Controllers
         }
 
         [HttpGet]
+        public ActionResult BySortPreferance()
+        {
+            return RedirectToAction("ByPreferance");
+        }
+
+        [HttpGet]
         public ActionResult ByPreferance()
         {
             var model = GetByQueryStringParameter().ToList();
 
-            foreach (var sportCenter in model)
-            {
-                sportCenter.Images = ImageHelper.SanitizeImageUrls(sportCenterService.GetImagesForSportCenter(sportCenter.Name).ToArray());
-            }
+            GetImageUrls(model);
 
             return View(model);
         }
@@ -75,6 +78,56 @@ namespace GoSport.Client.Controllers
             return sportCenterService.All()
                         .OrderByDescending(x => x.CreatedOn)
                         .To<SportCenterViewModel>();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult BySortPreferance(string sortParam)
+        {
+            var model = new List<SportCenterViewModel>();
+
+            if (sortParam != null || sortParam != string.Empty)
+            {
+                if (sortParam == "Rating")
+                {
+                    model = sportCenterService.All()
+                            .OrderByDescending(x => x.Rating)
+                            .To<SportCenterViewModel>()
+                            .ToList();
+                }
+                if (sortParam == "Date")
+                {
+                    model = sportCenterService.All()
+                            .OrderByDescending(x => x.CreatedOn)
+                            .To<SportCenterViewModel>()
+                            .ToList();
+                }
+                if (sortParam == "Name")
+                {
+                    model = sportCenterService.All()
+                            .OrderBy(x => x.Name)
+                            .To<SportCenterViewModel>()
+                            .ToList();
+                }
+                if (sortParam == "Most comments")
+                {
+                    model = sportCenterService.All()
+                            .OrderByDescending(x => x.Comments.Count())
+                            .To<SportCenterViewModel>()
+                            .ToList();
+                }
+            }
+            else
+            {
+                model = sportCenterService.All()
+                .OrderByDescending(x => x.CreatedOn)
+                .To<SportCenterViewModel>()
+                .ToList();
+            }
+
+            GetImageUrls(model);
+
+            return this.View("ByPreferance", model);
         }
 
         [HttpPost]
@@ -121,12 +174,17 @@ namespace GoSport.Client.Controllers
                 .Where(x => neighbour != string.Empty ? x.Address.Neighborhood == neighbour : x.Address.Neighborhood != null)
                 .ToList();
 
-            foreach (var sportCenter in fromCitiesAndNeihbours)
+            GetImageUrls(fromCitiesAndNeihbours);
+
+            return View(fromCitiesAndNeihbours);
+        }
+
+        private void GetImageUrls(IEnumerable<SportCenterViewModel> collection)
+        {
+            foreach (var sportCenter in collection)
             {
                 sportCenter.Images = ImageHelper.SanitizeImageUrls(sportCenterService.GetImagesForSportCenter(sportCenter.Name).ToArray());
             }
-
-            return View(fromCitiesAndNeihbours);
         }
     }
 }
