@@ -40,7 +40,7 @@ namespace GoSport.Services
                 else
                 {
                     if (string.IsNullOrWhiteSpace(name)) continue;
-                    sportCategoriesDb.Add(new SportCategory() { Name = name, SportCenters = new List<SportCenter>() { sportCenter } });
+                    sportCategoriesDb.Add(new SportCategory() { Name = name.Trim(), SportCenters = new List<SportCenter>() { sportCenter } });
                 }
             }
             sportCategoriesDb.SaveChanges();

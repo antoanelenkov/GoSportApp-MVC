@@ -195,9 +195,9 @@
     <Compile Include="Common\GlobalConstants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressController.cs" />
+    <Compile Include="Controllers\AdvancedController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PageNotFoundController.cs" />
     <Compile Include="Controllers\RatingController.cs" />
     <Compile Include="Controllers\SportCenterController.cs" />
@@ -209,7 +209,8 @@
     <Compile Include="Infrastructure\Filters\ValidPhoneNumberAttribute.cs" />
     <Compile Include="Infrastructure\ImageHelper.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
-    <Compile Include="ViewModels\AddressViewModel.cs" />
+    <Compile Include="ViewModels\Addresses\AddressViewModel.cs" />
+    <Compile Include="ViewModels\Advanced\SearchViewModel.cs" />
     <Compile Include="ViewModels\Comments\CommentViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -302,6 +303,7 @@
     <Content Include="Views\Shared\_RatingPartial.cshtml" />
     <Content Include="Views\Shared\_AddCommentPartial.cshtml" />
     <Content Include="Views\Shared\_AllCommentsPartial.cshtml" />
+    <Content Include="Views\Advanced\ByPreferance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

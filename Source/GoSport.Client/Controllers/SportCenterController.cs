@@ -44,7 +44,6 @@ namespace GoSport.Client.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public ActionResult Details(int id)
         {
 
@@ -55,17 +54,6 @@ namespace GoSport.Client.Controllers
 
             return View(model);
         }
-
-        //[HttpPost]
-        //[Authorize]
-        //public ActionResult Details(int id)
-        //{
-        //    var model = Mapper.Map<SportCenterViewModel>(sportCenterService.All().FirstOrDefault(x => x.Id == id));
-
-        //    model.Images = ImageHelper.SanitizeImageUrls(sportCenterService.GetImagesForSportCenter(model.Name).ToArray());
-
-        //    return View(model);
-        //}
 
         [HttpPost]
         [Authorize]
@@ -85,11 +73,12 @@ namespace GoSport.Client.Controllers
                     addressService.AddAddressForSportCenter(sportCenter.Name, addressId);
                 }
 
+                // categories
                 if (model.SportCategories != null)
                 {
-                    var categoriesNames = model.SportCategories
-                        .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-                        .Where(x => !string.IsNullOrEmpty(x));
+                    var categoriesNames = Array
+                    .ConvertAll(model.SportCategories.Split(','), p => p.Trim())
+                    .Where(x => !string.IsNullOrEmpty(x)).ToList();
 
                     categoryService.AddCategoriesForSportCenter(categoriesNames, sportCenter.Name);
                 }

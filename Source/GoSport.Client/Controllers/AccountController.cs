@@ -140,7 +140,9 @@
                 // categories
                 if (model.SportCategories != null)
                 {
-                    var categoriesNames = model.SportCategories.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                    var categoriesNames = Array
+                    .ConvertAll(model.SportCategories.Split(','), p => p.Trim())
+                    .Where(x => !string.IsNullOrEmpty(x)).ToList();
 
                     categoryService.AddCategoriesForUser(categoriesNames, user.Id);
                 }

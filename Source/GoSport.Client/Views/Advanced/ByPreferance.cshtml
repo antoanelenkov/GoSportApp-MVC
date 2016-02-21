@@ -1,17 +1,59 @@
-﻿@{
-    Layout = null;
+﻿@using GoSport.Client.ViewModels.SportCenters
+@using GoSport.Client.ViewModels
+@model IEnumerable<SportCenterViewModel>
+
+@using (Html.BeginForm("ByPreferance", "Advanced", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <h2>Advanced Search</h2>
+    <hr />
+    <div class="row">
+        <div class="row col-md-offset-1">@{Html.RenderPartial("_AddressPartial", new AddressViewModel());}</div>
+        <div class="row col-md-offset-3">@{Html.RenderPartial("_SportCategoriesPartial");}</div>
+        <br />
+        <div class="row col-md-offset-4">
+            <input type="submit" class="btn btn-default" value=" Search" />
+        </div>
+    </div>
+    <hr />
+}
+@if(Model.Count() == 0)
+{
+    <div>No results found for this criteria...</div>
+}
+@foreach (var sportCenter in Model)
+{
+    <div class="row">
+        <div class="col-md-1">
+            <a href='@String.Format("/SportCenter/Details/{0}",sportCenter.Id)'>@if (sportCenter.Images.Count > 0)
+            {<img src="@sportCenter.Images.First()" alt="avatar" height=70 width=70 class="img-rounded" />}</a>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-2">City: </div>
+                <a href="\Advanced\ByPreferance?City=@sportCenter.Address.City" class="badge">@sportCenter.Address.City</a>
+            </div>
+            <div class="row">
+                <div class="col-md-2">Neighbour: </div>
+                <a href="\Advanced\ByPreferance?Neighbour=@sportCenter.Address.Neighborhood" class="badge">@sportCenter.Address.Neighborhood</a>
+            </div>
+            <div class="row">
+                <div class="col-md-2">Practiced sports: </div>
+                @foreach (var item in sportCenter.Categories)
+                {
+                    <a href="\Advanced\ByPreferance?category=@item.Name" class="badge">@item.Name</a>
+                }
+            </div>
+            <div class="row">
+                <div class="col-md-2">Rating: </div>
+                @if (sportCenter.Rating != null)
+                { <div class="col-md-2">@(sportCenter.Rating.Total != 0 ? String.Format("{0:0.00}", sportCenter.Rating.Total) : "Not rated yet...") </div>}
+            </div>
+        </div>
+    </div>
+    <hr />
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
-    </div>
-</body>
-</html>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
