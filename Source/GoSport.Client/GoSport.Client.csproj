@@ -295,6 +295,7 @@
     <Content Include="Views\Shared\_AddressPartial.cshtml" />
     <Content Include="Views\User\Profile.cshtml" />
     <Content Include="Views\SportCenter\Details.cshtml" />
+    <Content Include="Views\Shared\_SportCenterInfoPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

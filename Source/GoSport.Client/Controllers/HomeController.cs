@@ -31,16 +31,29 @@ namespace GoSport.Client.Controllers
         public ActionResult Index(int id = 0)
         {
             if (id < 0) id = 0;
-            if (id > 0)id = id - 1; 
+            if (id > 0) id = id - 1;
 
-            var model = sportCenterService.All()
-                .OrderByDescending(x=>x.CreatedOn)
-                .Skip(id * (int)ViewBag.ItemsPerPage)
-                .Take((int)ViewBag.ItemsPerPage)
-                .To<SportCenterViewModel>()
-                .ToList();
+            var model = this.HttpContext.Cache[string.Format("Sportcenters by page: {0}", id)];
 
-            foreach (var sportCenter in model)
+            if (model == null)
+            {
+                model = sportCenterService.All()
+                        .OrderByDescending(x => x.CreatedOn)
+                        .Skip(id * (int)ViewBag.ItemsPerPage)
+                        .Take((int)ViewBag.ItemsPerPage)
+                        .To<SportCenterViewModel>()
+                        .ToList();
+
+                this.HttpContext.Cache.Insert(
+                    string.Format("Sportcenters by page: {0}", id),
+                    model,
+                    null,
+                    DateTime.Now.AddMinutes(10),
+                    TimeSpan.Zero
+                    );
+            }
+
+            foreach (var sportCenter in (IEnumerable<SportCenterViewModel>)model)
             {
                 sportCenter.Images = ImageHelper.SanitizeImageUrls(sportCenterService.GetImagesForSportCenter(sportCenter.Name).ToArray());
             }

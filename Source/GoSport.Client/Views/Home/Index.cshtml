@@ -14,71 +14,17 @@
 </div>
 @foreach (var center in Model)
 {
+
     <hr />
     <div class="container">
-        <h1 class="col text-center"><a href="/SportCenter/Details/@center.Id">@center.Name</a></h1>
-        <ul class="bxslider">
-            @foreach (var img in center.Images)
-            {
-                <li><img src="@img" height=300 width=300 class="img-rounded" /></li>
-            }
-        </ul>   
+        @{
+            Html.RenderPartial("_SportCenterInfoPartial", center);
+        }
         <div class="row col-md-offset-3">
-            <div class="col-md-2">Exact Address: </div>
-            <div class="col-md-4">@center.ExactAddress</div>
-        </div>
-        <div class="row col-md-offset-3">
-            <div class="col-md-2">City: </div>
-            <div class="col-md-4">@center.Address.City</div>
-        </div>
-        <div class="row col-md-offset-3">
-            <div class="col-md-2">Neighbour: </div>
-            <div class="col-md-4">@center.Address.Neighborhood</div>
-        </div>
-        <div class="row col-md-offset-3">
-            <div class="col-md-2">Description: </div>
-            <div class="col-md-4">@center.Description   </div>
-        </div>
-        <div class="row col-md-offset-3">
-            <div class="col-md-2">Practiced sports: </div>
-            @foreach (var item in center.Categories)
-            {
-                <a href="\Home\Index\@item.Name" class="badge">@item.Name</a>
-            }
-        </div>
-        <h2 class="row text-center">Rating</h2>
-        <div class="row col-md-offset-3">
-            <div class="col-md-2">Comfort: </div>
-            <div class="col-md-2">@(center.Rating != null ? center.Rating.Comfort.ToString() : "Not rated yet...") </div>
-        </div>
-        <div class="row col-md-offset-3">
-            <div class="col-md-2">Price: </div>
-            <div class="col-md-2">@(center.Rating != null ? center.Rating.Price.ToString() : "Not rated yet...") </div>
-        </div>
-        <div class="row col-md-offset-3">
-            <div class="col-md-2">Service: </div>
-            <div class="col-md-2">@(center.Rating != null ? center.Rating.Service.ToString() : "Not rated yet...") </div>
-        </div>
-        <div class="row col-md-offset-3">
-            <div class="col-md-2">Trainer/Trainers: </div>
-            <div class="col-md-2">@(center.Rating != null ? center.Rating.Trainers.ToString() : "Not rated yet...") </div>
-        </div>
-        <br />
-        <div class="row col-md-offset-3">
-            <div class="col-md-2">Total: </div>
+            <div class="col-md-2">Rating: </div>
             <div class="col-md-2">@(center.Rating != null ? center.Rating.Total.ToString() : "Not rated yet...") </div>
-            @if (User.Identity.IsAuthenticated)
-            {
-                <div class="starRate">
-                    <input type="button" class="btn-sm btn btn-primary" value="1" />
-                    <input type="button" class="btn-sm btn btn-primary" value="2" />
-                    <input type="button" class="btn-sm btn btn-primary" value="3" />
-                    <input type="button" class="btn-sm btn btn-primary" value="4" />
-                    <input type="button" class="btn-sm btn btn-primary" value="5" />
-                </div>
-            }
         </div>
-        <h1 class="row text-center">Comments</h1>
+        <h1 class="row text-center">Last Comment</h1>
         @{ViewBag.CommentAuthor = @center.Comments.OrderByDescending(x => x.CreatedOn).FirstOrDefault();}
         @if (ViewBag.CommentAuthor != null)
         {
