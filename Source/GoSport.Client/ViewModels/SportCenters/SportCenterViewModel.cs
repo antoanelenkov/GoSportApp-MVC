@@ -17,7 +17,7 @@ namespace GoSport.Client.ViewModels.SportCenters
 
         public int? AddressId { get; set; }
 
-        public virtual Address Address { get; set; }
+        public Address Address { get; set; }
 
         public string Description { get; set; }
 

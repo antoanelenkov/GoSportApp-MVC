@@ -27,7 +27,6 @@ namespace GoSport.Data.DataSeed
             db.Roles.Add(new IdentityRole { Name = "Admin" });
         }
 
-
         public  void SeedCategories()
         {
             this.db.SportCategories.Add(new SportCategory() { Name = "Fitness" });
