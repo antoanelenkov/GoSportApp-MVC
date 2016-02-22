@@ -29,14 +29,23 @@
                         <li>@Html.ActionLink("Add Sport Center", "Add", "SportCenter")</li>
                     }
                     <li>@Html.ActionLink("Search", "ByPreferance", "Advanced")</li>
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <li>@Html.ActionLink("Sport Centers", "Index", "SportCenters", new { area = "Administration" }, null)</li>
-                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
+        <div class="container">
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="">@Html.ActionLink("Sport Centers", "Index", "SportCenters", new { area = "Administration" }, null)</li>
+                        <li class="">@Html.ActionLink("Sport Categories", "Index", "Categories", new { area = "Administration" }, null)</li>
+                        <li class="">@Html.ActionLink("Comments", "Index", "Comments", new { area = "Administration" }, null)</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
     </div>
     <div class="container body-content">
         @RenderBody()

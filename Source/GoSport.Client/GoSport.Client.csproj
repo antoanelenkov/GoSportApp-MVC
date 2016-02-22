@@ -220,7 +220,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Rating\RatingViewModel.cs" />
     <Compile Include="ViewModels\SportCenters\AddSportCenterViewModel.cs" />
-    <Compile Include="Areas\Administration\ViewModels\SportCenterViewAdminModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\AdminSportCenterViewModel.cs" />
     <Compile Include="ViewModels\SportCenters\SportCenterViewModel.cs" />
     <Compile Include="ViewModels\Users\UserProfileViewModel.cs" />
   </ItemGroup>

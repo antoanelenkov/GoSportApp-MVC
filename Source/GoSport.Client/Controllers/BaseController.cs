@@ -33,6 +33,12 @@ namespace GoSport.Client.Controllers
 
         public ICacheService Cache { get; set; }
 
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            var httpContenxt = filterContext.HttpContext;
+            AddDataToCache();
+        }
+
         protected void AddDataToCache()
         {
             var categories = this.HttpContext.Cache[Constants.CacheCategoriesName];
@@ -63,12 +69,6 @@ namespace GoSport.Client.Controllers
 
             ViewBag.Categories = categories;
             ViewBag.Cities = cities;
-        }
-
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            var httpContenxt = filterContext.HttpContext;
-            AddDataToCache();
         }
 
         protected IMapper Mapper

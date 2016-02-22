@@ -28,7 +28,7 @@ namespace GoSport.Client.Areas.Administration.Controllers
         {
             var model = sportCenterService
                 .All()
-                .To<SportCenterAdminViewModel>()
+                .To<AdminSportCenterViewModel>()
                 .ToList();
 
             return View(model);
@@ -47,7 +47,7 @@ namespace GoSport.Client.Areas.Administration.Controllers
                 return HttpNotFound();
             }
 
-            return View(Mapper.Map<SportCenterAdminViewModel>(entity));
+            return View(Mapper.Map<AdminSportCenterViewModel>(entity));
         }
 
         public ActionResult Edit(int? id)
@@ -68,7 +68,7 @@ namespace GoSport.Client.Areas.Administration.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(SportCenterAdminViewModel sportCenter)
+        public ActionResult Edit(AdminSportCenterViewModel sportCenter)
         {
             if (ModelState.IsValid)
             {

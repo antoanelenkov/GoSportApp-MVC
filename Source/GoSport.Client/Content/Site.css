@@ -137,3 +137,9 @@ hr {
     border-radius: 10px;
     background-color: #B7F7D8;
 }
+
+.wallpaper{
+    padding-top:120px;
+    background-image:url(http://hongkong.asiaxpat.com/Splash/images/hk_Activities/football.jpg);
+    height:400px;
+}
