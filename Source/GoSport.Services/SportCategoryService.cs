@@ -97,6 +97,20 @@ namespace GoSport.Services
             return true;
         }
 
+        public IQueryable<SportCenter> GetByCategories(IEnumerable<string> categoriesNames)
+        {
+            var fromCategories = new List<SportCenter>();
+
+            foreach (var category in categoriesNames)
+            {
+                fromCategories = sportCategoriesDb.All()
+                    .FirstOrDefault(x => x.Name == category)
+                    .SportCenters.ToList();
+            }
+
+            return fromCategories.AsQueryable();
+        }
+
         public bool UpdateById(int id, string name)
         {
             throw new NotImplementedException();

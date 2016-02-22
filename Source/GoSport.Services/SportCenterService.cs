@@ -129,6 +129,19 @@ namespace GoSport.Services
             throw new ArgumentException("invalid type provided");
         }
 
+        public IQueryable<SportCenter>  GetByCityAndNeighbour(string city, string neighbour)
+        {
+            return sportCentersDb.All()
+                .Where(x => city != string.Empty ? x.Address.City == city : x.Address.City == null)
+                .Where(x => neighbour != string.Empty ? x.Address.Neighborhood == neighbour : x.Address.Neighborhood == null);
+        }
+
+        public IQueryable<SportCenter> GetByCity(string city)
+        {
+            return sportCentersDb.All()
+                .Where(x => city != string.Empty ? x.Address.City == city : x.Address.City == null);
+        }
+
         public SportCenter GetById(int id)
         {
             return sportCentersDb.All().FirstOrDefault(x => x.Id == id);

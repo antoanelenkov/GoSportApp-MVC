@@ -23,6 +23,10 @@ namespace GoSport.Services.Contracts
 
         IQueryable<string> GetImagesForSportCenter(string sportCenterName);
 
+        IQueryable<SportCenter> GetByCity(string city);
+
+        IQueryable<SportCenter> GetByCityAndNeighbour(string city, string neighbour);
+
         bool UpdateById(int id, string name);
 
         bool DeleteById(int id);
