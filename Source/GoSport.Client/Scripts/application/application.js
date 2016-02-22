@@ -14,12 +14,12 @@ function getAllNeighbourhoods(city) {
         success: function (data) {
             neighbourhoodsDropDown.html('');
 
-            if (!data.length) {
-                neighbourhoodsDropDown.append(
-                    $('<option></option>').val("None").html("None")
-                );
-            }
-
+            //if (!data.length) {
+            //    neighbourhoodsDropDown.append(
+            //        $('<option></option>').val("None").html("None")
+            //    );
+            //}
+            neighbourhoodsDropDown.append($('<option></option>').val("None").html("None"));
             for (var i = 0; i < data.length; i++) {
                 neighbourhoodsDropDown.append(
                     $('<option></option>').val(data[i].Id).html(data[i].Neighborhood)

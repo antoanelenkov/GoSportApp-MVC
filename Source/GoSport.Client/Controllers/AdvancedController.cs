@@ -91,7 +91,7 @@ namespace GoSport.Client.Controllers
                 if (sortParam == "Rating")
                 {
                     model = sportCenterService.All()
-                            .OrderByDescending(x => x.Rating)
+                            .OrderByDescending(x => x.Rating.Total)
                             .To<SportCenterViewModel>()
                             .ToList();
                 }
@@ -139,13 +139,20 @@ namespace GoSport.Client.Controllers
             if (model.City != 0) city = addressService.All().FirstOrDefault(x => x.Id == model.City).City;
             if (model.Neighborhood != 0) neighbour = addressService.All().FirstOrDefault(x => x.Id == model.Neighborhood).Neighborhood;
 
-            // cities and neighbours
             var fromCitiesAndNeihbours = sportCenterService.All()
-                .OrderByDescending(x => x.CreatedOn)
-                .Where(x => city != string.Empty ? x.Address.City == city : x.Address.City != null)
-                .Where(x => neighbour != string.Empty ? x.Address.Neighborhood == neighbour : x.Address.Neighborhood != null)
+                .Where(x => city != string.Empty ? x.Address.City == city : x.Address.City == null)
+                .Where(x => neighbour != string.Empty ? x.Address.Neighborhood == neighbour : x.Address.Neighborhood == null)
                 .To<SportCenterViewModel>()
                 .ToList();
+
+            // cities and neighbours
+            if (string.IsNullOrEmpty(neighbour))
+            {
+                fromCitiesAndNeihbours = sportCenterService.All()
+                .Where(x => city != string.Empty ? x.Address.City == city : x.Address.City == null)
+                .To<SportCenterViewModel>()
+                .ToList();
+            }
 
             // categories
             var categoriesNames = new List<string>();
@@ -161,20 +168,39 @@ namespace GoSport.Client.Controllers
             foreach (var category in categoriesNames)
             {
                 fromCategories.AddRange(categoryService.All()
-                    .OrderByDescending(x => x.CreatedOn)
                     .FirstOrDefault(x => x.Name == category)
                     .SportCenters
                     .AsQueryable()
                     .To<SportCenterViewModel>().ToList());
             }
 
-            fromCitiesAndNeihbours.AddRange(fromCategories);
-            fromCitiesAndNeihbours = fromCitiesAndNeihbours
-                .Where(x => city != string.Empty ? x.Address.City == city : x.Address.City != null)
-                .Where(x => neighbour != string.Empty ? x.Address.Neighborhood == neighbour : x.Address.Neighborhood != null)
-                .ToList();
+            var resultSportCenters = new List<SportCenterViewModel>();
 
-            GetImageUrls(fromCitiesAndNeihbours);
+            if (fromCitiesAndNeihbours.Count > 0 && fromCategories.Count > 0)
+            {
+                resultSportCenters = fromCitiesAndNeihbours
+                    .Where(x=>fromCategories.Any(y=>y.Name==x.Name))
+                    .ToList();
+            }
+            else if(fromCategories.Count > 0)
+            {
+                resultSportCenters = fromCategories;
+            }
+            else
+            {
+                resultSportCenters = fromCitiesAndNeihbours
+                    .Where(x => city != string.Empty ? x.Address.City == city : x.Address.City != null)
+                    .Where(x => neighbour != string.Empty ? x.Address.Neighborhood == neighbour : x.Address.Neighborhood != null)
+                    .ToList();
+            }
+
+            if (resultSportCenters.Count == 0)
+            {
+                resultSportCenters = sportCenterService.All().To<SportCenterViewModel>().ToList();
+            }
+
+
+            this.GetImageUrls(fromCitiesAndNeihbours);
 
             return View(fromCitiesAndNeihbours);
         }
