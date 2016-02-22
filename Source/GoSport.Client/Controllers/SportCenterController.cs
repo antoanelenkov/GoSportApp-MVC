@@ -155,8 +155,8 @@ namespace GoSport.Client.Controllers
                 //var model = new List<CommentViewModel>();
                 var allComments = sportCenter.Comments.ToList();
 
-                return RedirectToAction("Details", new { @id = sportCenterId });
-                //return PartialView("_AllCommentsPartial", allComments);
+                //return RedirectToAction("Details", new { @id = sportCenterId });
+                return PartialView("_AllCommentsPartial", allComments);
             }
 
             throw new HttpException(400, "Invalid comment");

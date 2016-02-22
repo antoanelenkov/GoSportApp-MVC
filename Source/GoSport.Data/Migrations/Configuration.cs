@@ -19,21 +19,27 @@ namespace GoSport.Data.Migrations
 
         protected override void Seed(GoSport.Data.ApplicationDbContext context)
         {
-            const string AdministratorUserName = "admin@abv.bg";
+            const string AdministratorUserName = "admin";
             const string AdministratorPassword = "qwerty";
 
             if (context.Roles.Any()) return;
 
             var dataSeeder = new DataSeeder(context);
-
             dataSeeder.SeedRoles();
             dataSeeder.SeedCategories();
             dataSeeder.SeedAddresses();
 
-            var userStore = new UserStore<User>(context);
-            var userManager = new UserManager<User>(userStore);
-            var user = new User { UserName = AdministratorUserName, Email = AdministratorUserName };
-            userManager.Create(user, AdministratorPassword);
+            try
+            {
+                var userStore = new UserStore<User>(context);
+                var userManager = new UserManager<User>(userStore);
+                var user = new User { UserName = AdministratorUserName, Email = AdministratorUserName, Address = new Address() { }, Name = "Admin" };
+                userManager.Create(user, AdministratorPassword);
+                userManager.AddToRole(user.Id, "Admin");
+            }
+            catch (Exception e)
+            {
+            };
 
             context.SaveChanges();
         }

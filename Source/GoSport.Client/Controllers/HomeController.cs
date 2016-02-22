@@ -30,8 +30,7 @@ namespace GoSport.Client.Controllers
         [HttpGet]
         public ActionResult Index(int id = 0)
         {
-            if (id < 0) id = 0;
-            if (id > 0) id = id - 1;
+            if (id <= 0) id = 1;
 
             var model = this.HttpContext.Cache[string.Format("Sportcenters by page: {0}", id)];
 
@@ -39,7 +38,7 @@ namespace GoSport.Client.Controllers
             {
                 model = sportCenterService.All()
                         .OrderByDescending(x => x.CreatedOn)
-                        .Skip(id * (int)ViewBag.ItemsPerPage)
+                        .Skip((id-1)* (int)ViewBag.ItemsPerPage)
                         .Take((int)ViewBag.ItemsPerPage)
                         .To<SportCenterViewModel>()
                         .ToList();
@@ -48,12 +47,12 @@ namespace GoSport.Client.Controllers
                     string.Format("Sportcenters by page: {0}", id),
                     model,
                     null,
-                    DateTime.Now.AddMinutes(10),
+                    DateTime.Now.AddSeconds(10),
                     TimeSpan.Zero
                     );
             }
 
-            foreach (var sportCenter in (IEnumerable<SportCenterViewModel>)model)
+                foreach (var sportCenter in (IEnumerable<SportCenterViewModel>)model)
             {
                 sportCenter.Images = ImageHelper.SanitizeImageUrls(sportCenterService.GetImagesForSportCenter(sportCenter.Name).ToArray());
             }

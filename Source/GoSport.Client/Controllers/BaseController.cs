@@ -44,7 +44,7 @@ namespace GoSport.Client.Controllers
                    Constants.CacheCategoriesName,
                    sportCategories.AllNames().ToList(),
                    null,
-                   DateTime.Now.AddMinutes(10),
+                   DateTime.Now.AddSeconds(10),
                    TimeSpan.Zero
                    );
 
@@ -53,7 +53,7 @@ namespace GoSport.Client.Controllers
                    Constants.CacheCitiesName,
                    addressService.AllCities().To<AddressViewModel>().ToList(),
                    null,
-                   DateTime.Now.AddMinutes(10),
+                   DateTime.Now.AddSeconds(10),
                    TimeSpan.Zero
                    );
 
