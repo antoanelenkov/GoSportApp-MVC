@@ -1,6 +1,6 @@
 ﻿@using Kendo.Mvc.UI;
 @using GoSport.Client.ViewModels.SportCenters
-@model IEnumerable<SportCenterViewModel2>
+@model IEnumerable<SportCenterAdminViewModel>
 @{
     ViewBag.Title = "View";
 }
@@ -27,8 +27,8 @@
     .Model(m => m.Id(x=>x.Id))
     .Read(read => read.Action("Read", "SportCenters"))
     .Create(create => create.Action("Create", "SportCenters"))
-    .Update(update => update.Action("Update", "SportCenters"))
-    .Destroy(destroy => destroy.Action("Destroy", "SportCenters"))))
+    .Update(update => update.Action("Edit", "SportCenters"))
+    .Destroy(destroy => destroy.Action("Delete", "SportCenters"))))
     
 
 

@@ -70,7 +70,16 @@ namespace GoSport.Services
 
         public bool DeleteById(int id)
         {
-            throw new NotImplementedException();
+            var entity = sportCentersDb.All().FirstOrDefault(x => x.Id == id);
+            if (entity == null)
+            {
+                return false;
+            }
+
+            sportCentersDb.Delete(id);
+            sportCentersDb.SaveChanges();
+
+            return true;
         }
 
         public void AddCommentToSportCenter(int sportCenterId, string authorId, string content)

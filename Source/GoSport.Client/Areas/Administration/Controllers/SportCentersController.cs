@@ -28,7 +28,7 @@ namespace GoSport.Client.Areas.Administration.Controllers
         {
             var model = sportCenterService
                 .All()
-                .To<SportCenterViewModel2>()
+                .To<SportCenterAdminViewModel>()
                 .ToList();
 
             return View(model);
@@ -47,7 +47,7 @@ namespace GoSport.Client.Areas.Administration.Controllers
                 return HttpNotFound();
             }
 
-            return View(Mapper.Map<SportCenterViewModel>(entity));
+            return View(Mapper.Map<SportCenterAdminViewModel>(entity));
         }
 
         public ActionResult Edit(int? id)
@@ -68,11 +68,11 @@ namespace GoSport.Client.Areas.Administration.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(SportCenterViewModel sportCenter)
+        public ActionResult Edit(SportCenterAdminViewModel sportCenter)
         {
             if (ModelState.IsValid)
             {
-                var entity = this.sportCategories.All().FirstOrDefault(x => x.Id == sportCenter.Id);
+                var entity = this.sportCenterService.All().FirstOrDefault(x => x.Id == sportCenter.Id);
 
                 return RedirectToAction("Index");
             }
@@ -88,15 +88,14 @@ namespace GoSport.Client.Areas.Administration.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var entity = this.sportCategories.All().FirstOrDefault(x => x.Id == (int)id);
-            var isDeleted=this.sportCategories.DeleteById((int)id);
+            var isDeleted = this.sportCenterService.DeleteById((int)id);
 
             if (!isDeleted)
             {
                 return HttpNotFound();
             }
 
-            return View(Mapper.Map<SportCenterViewModel>(entity));
+            return View();
         }
 
         //// POST: Administration/Comments/Delete/5

@@ -220,7 +220,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Rating\RatingViewModel.cs" />
     <Compile Include="ViewModels\SportCenters\AddSportCenterViewModel.cs" />
-    <Compile Include="ViewModels\SportCenters\SportCenterViewModel2.cs" />
+    <Compile Include="Areas\Administration\ViewModels\SportCenterViewAdminModel.cs" />
     <Compile Include="ViewModels\SportCenters\SportCenterViewModel.cs" />
     <Compile Include="ViewModels\Users\UserProfileViewModel.cs" />
   </ItemGroup>
@@ -315,7 +315,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Content\Avatars\" />
     <Folder Include="Content\ImageSlider\images\" />
     <Folder Include="Content\SportCenters\" />

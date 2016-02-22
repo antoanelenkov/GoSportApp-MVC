@@ -85,7 +85,16 @@ namespace GoSport.Services
 
         public bool DeleteById(int id)
         {
-            throw new NotImplementedException();
+            var entity = sportCategoriesDb.All().FirstOrDefault(x => x.Id == id);
+            if (entity == null)
+            {
+                return false;
+            }
+
+            sportCategoriesDb.Delete(id);
+            sportCategoriesDb.SaveChanges();
+
+            return true;
         }
 
         public bool UpdateById(int id, string name)
