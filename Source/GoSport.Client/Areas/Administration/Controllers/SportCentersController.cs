@@ -67,7 +67,6 @@ namespace GoSport.Client.Areas.Administration.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit(AdminSportCenterViewModel sportCenter)
         {
             if (ModelState.IsValid)
