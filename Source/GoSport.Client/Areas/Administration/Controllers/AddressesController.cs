@@ -1,12 +1,9 @@
-﻿using GoSport.Client.Infrastructure.Mapping;
-using GoSport.Client.Areas.Administration.ViewModels;
+﻿using GoSport.Client.Areas.Administration.ViewModels;
+using GoSport.Client.Infrastructure.Mapping;
 using GoSport.Data.Models;
 using GoSport.Services.Contracts;
-using Kendo.Mvc.UI;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -14,23 +11,24 @@ using System.Web.Mvc;
 
 namespace GoSport.Client.Areas.Administration.Controllers
 {
-    public class SportCentersController : AdminController
+    public class AddressesController:AdminController
     {
-        public SportCentersController(
-            ISportCategoryService sportCategories,
-            IAddressService addressService,
-            ISportCategoryService categoryService,
-            ISportCenterService sportCenterService)
+        public AddressesController(
+           ISportCategoryService sportCategories,
+           IAddressService addressService,
+           ISportCategoryService categoryService,
+           ISportCenterService sportCenterService)
             : base(sportCategories, addressService, categoryService, sportCenterService)
         {
+
         }
 
         public ActionResult Index()
         {
-            var model = sportCenterService
+            var model = addressService
                 .All()
-                .OrderBy(x=>x.Name)
-                .To<AdminSportCenterViewModel>()
+                .OrderBy(x => x.City)
+                .To<AdminAddressViewModel>()
                 .ToList();
 
             return View(model);
@@ -57,7 +55,7 @@ namespace GoSport.Client.Areas.Administration.Controllers
         {
             if (ModelState.IsValid)
             {
-                this.sportCenterService.Update(Mapper.Map<SportCenter>(sportCenter),sportCenter.City,sportCenter.Neighbour);
+                this.sportCenterService.Update(Mapper.Map<SportCenter>(sportCenter), sportCenter.City, sportCenter.Neighbour);
 
                 return RedirectToAction("Index");
             }

@@ -193,8 +193,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Areas\Administration\Controllers\AddressesController.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Administration\Controllers\SportCategoriesController.cs" />
     <Compile Include="Areas\Administration\Controllers\SportCentersController.cs" />
+    <Compile Include="Areas\Administration\ViewModels\AdminAddressViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\AdminSportCategoryViewModel.cs" />
     <Compile Include="Common\GlobalConstants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressController.cs" />
@@ -244,6 +248,8 @@
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Administration\Views\SportCenters\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\SportCategories\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Addresses\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ImageSlider\jquery.bxslider.js" />
     <Content Include="Scripts\ImageSlider\jquery.bxslider.min.js" />

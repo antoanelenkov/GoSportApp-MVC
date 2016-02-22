@@ -1,9 +1,6 @@
 ﻿@using Kendo.Mvc.UI;
 @using GoSport.Client.Areas.Administration.ViewModels
-@model IEnumerable<AdminSportCenterViewModel>
-@{
-    ViewBag.Title = "View";
-}
+@model IEnumerable<AdminAddressViewModel>
 <h2>Sport centers administration</h2>
 @(Html.Kendo()
     .Grid(Model)
@@ -24,10 +21,10 @@
     .DataSource(data =>
     data
     .Ajax()
-    .Model(m => m.Id(x=>x.Id))
-    .Read(read => read.Action("Read", "SportCenters"))
-    .Update(update => update.Action("Edit", "SportCenters"))
-    .Destroy(destroy => destroy.Action("Delete", "SportCenters"))))
-    
+    .Model(m => m.Id(x => x.Id))
+    .Read(read => read.Action("Read", "Addresses"))
+    .Update(update => update.Action("Edit", "Addresses"))
+    .Destroy(destroy => destroy.Action("Delete", "Addresses"))))
+
 
 
