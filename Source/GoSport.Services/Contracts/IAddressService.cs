@@ -9,6 +9,8 @@ namespace GoSport.Services.Contracts
 {
     public interface IAddressService
     {
+        Address GetById(int id);
+
         IQueryable<Address> AllCities();
 
         IQueryable<Address> All();

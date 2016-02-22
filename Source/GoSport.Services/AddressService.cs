@@ -67,5 +67,11 @@ namespace GoSport.Services
 
             sportCenters.SaveChanges();
         }
+
+        public Address GetById(int id)
+        {
+            return addressesDb.All()
+              .FirstOrDefault(x => id == x.Id);
+        }
     }
 }

@@ -9,6 +9,8 @@ namespace GoSport.Services.Contracts
 {
     public interface ISportCenterService
     {
+        SportCenter GetById(int id);
+
         IQueryable<SportCenter> All();
 
         SportCenter Create(SportCenter model);

@@ -66,12 +66,7 @@
     <Compile Include="IdentifierProvider.cs" />
     <Compile Include="SportCategoryService.cs" />
     <Compile Include="SportCenterService.cs" />
-    <Compile Include="Contracts\ILikeService.cs" />
-    <Compile Include="Contracts\IMessageService.cs" />
     <Compile Include="Contracts\ISportCategoryService.cs" />
-    <Compile Include="Contracts\IVisitService.cs" />
-    <Compile Include="Contracts\ICommentService.cs" />
-    <Compile Include="Contracts\ISportCenterRatingService.cs" />
     <Compile Include="Contracts\ISportCenterService.cs" />
     <Compile Include="Contracts\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

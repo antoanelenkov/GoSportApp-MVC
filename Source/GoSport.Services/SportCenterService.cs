@@ -128,5 +128,10 @@ namespace GoSport.Services
 
             throw new ArgumentException("invalid type provided");
         }
+
+        public SportCenter GetById(int id)
+        {
+            return sportCentersDb.All().FirstOrDefault(x => x.Id == id);
+        }
     }
 }

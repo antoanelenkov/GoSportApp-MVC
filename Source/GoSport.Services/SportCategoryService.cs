@@ -101,5 +101,10 @@ namespace GoSport.Services
         {
             throw new NotImplementedException();
         }
+
+        public SportCategory GetById(int id)
+        {
+            return sportCategoriesDb.All().FirstOrDefault(x => x.Id == id);
+        }
     }
 }
