@@ -48,7 +48,7 @@ namespace GoSport.Client.Controllers
         {
 
 
-            var model = Mapper.Map<SportCenterViewModel>(sportCenterService.All().FirstOrDefault(x => x.Id == id));
+            var model = Mapper.Map<SportCenterViewModel>(sportCenterService.GetById(id));
 
             model.Images = ImageHelper.SanitizeImageUrls(sportCenterService.GetImagesForSportCenter(model.Name).ToArray());
 
@@ -146,12 +146,12 @@ namespace GoSport.Client.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult AddComment(int sportCenterId,string content)
+        public ActionResult AddComment(int sportCenterId, string content)
         {
-            if(ModelState.IsValid && sportCenterId!=0 && content != null && content != string.Empty)
+            if (ModelState.IsValid && sportCenterId != 0 && content != null && content != string.Empty)
             {
                 sportCenterService.AddCommentToSportCenter(sportCenterId, User.Identity.GetUserId(), content);
-                var sportCenter = sportCenterService.All().FirstOrDefault(x => x.Id == sportCenterId);
+                var sportCenter = sportCenterService.GetById(sportCenterId);
                 //var model = new List<CommentViewModel>();
                 var allComments = sportCenter.Comments.ToList();
 

@@ -146,5 +146,20 @@ namespace GoSport.Services
         {
             return sportCentersDb.All().FirstOrDefault(x => x.Id == id);
         }
+
+        public void Update(SportCenter entity,string city,string neighbour)
+        {
+            var model = sportCentersDb.GetById(entity.Id);
+
+            model.Name = entity.Name;
+            model.PhoneNumber = entity.PhoneNumber;
+            model.ExactAddress = entity.ExactAddress;
+            model.Address.City = city;
+            model.Address.Neighborhood = neighbour;
+            model.Description = entity.Description;
+
+            sportCentersDb.Update(model);
+            sportCentersDb.SaveChanges();
+        }
     }
 }

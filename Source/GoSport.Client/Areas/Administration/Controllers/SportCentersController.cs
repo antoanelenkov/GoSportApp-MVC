@@ -57,7 +57,7 @@ namespace GoSport.Client.Areas.Administration.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var sportCenter = this.sportCategories.All().FirstOrDefault(x => x.Id == id);
+            var sportCenter = this.sportCategories.GetById((int)id);
             if (sportCenter == null)
             {
                 return HttpNotFound();
@@ -71,7 +71,7 @@ namespace GoSport.Client.Areas.Administration.Controllers
         {
             if (ModelState.IsValid)
             {
-                var entity = this.sportCenterService.All().FirstOrDefault(x => x.Id == sportCenter.Id);
+                this.sportCenterService.Update(Mapper.Map<SportCenter>(sportCenter),sportCenter.City,sportCenter.Neighbour);
 
                 return RedirectToAction("Index");
             }

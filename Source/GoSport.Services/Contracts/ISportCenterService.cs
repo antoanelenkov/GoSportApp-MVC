@@ -27,7 +27,7 @@ namespace GoSport.Services.Contracts
 
         IQueryable<SportCenter> GetByCityAndNeighbour(string city, string neighbour);
 
-        bool UpdateById(int id, string name);
+        void Update(SportCenter entity,string city,string neighbour);
 
         bool DeleteById(int id);
     }
