@@ -4,20 +4,20 @@
    - Administation
     
 ### Administration Controllers
- *  [AdminController](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Areas/Administration/Controllers/AdminController.cs_)
- * [AddressController](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Areas/Administration/Controllers/AddressController.cs_)
+ *  [AdminController](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Areas/Administration/Controllers/AdminController.cs)
+ *  [AddressController](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Areas/Administration/Controllers/AddressesController.cs)
     - Index
     - Create
     - Edit(Get)
     - Edit(Post)
     - Delete
- * [CategoriesController](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Areas/Administration/Controllers/CategoriesController.cs_)
+ *  [CategoriesController](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Areas/Administration/Controllers/CategoriesController.cs)
     - Index
     - Create
     - Edit(Get)
     - Edit(Post)
     - Delete
-  * [SportCentersController](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Areas/Administration/Controllers/SportCentersController.cs_)
+  * [SportCentersController](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Areas/Administration/Controllers/SportCentersController.cs)
     - Index
     - Edit(Get)
     - Edit(Post)
@@ -37,18 +37,18 @@
     - GetAllNeighbourhoods(Post)
  * [RatingController](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Controllers/RatingController.cs)
     - RateSportCenters
-  * [SportCenterController](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Controllers/SportCenterController.cs)
+ * [SportCenterController](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Controllers/SportCenterController.cs)
     - Add(Get)
     - Add(Post)
     - Details
     - AddComment
-  * [AdvancedController](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Controllers/AdvancedController.cs)
+ * [AdvancedController](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Controllers/AdvancedController.cs)
     - BySortPreferance(Get)
     - BySortPreferance(Post)
     - ByPreferance
-  * [UserController](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Controllers/UserController.cs)
+ * [UserController](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Controllers/UserController.cs)
     - Profile
-* [ErrorController](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Controllers/ErrorController.cs)
+ * [ErrorController](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Controllers/ErrorController.cs)
     - NotFound
 
 ## Partial Views

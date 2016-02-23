@@ -24,15 +24,42 @@ namespace GoSport.Client.Areas.Administration.Controllers
 
         }
 
-        public ActionResult Index()
-        {
-            var model = addressService
-                .All()
-                .OrderByDescending(x => x.CreatedOn)
-                .To<AdminAddressViewModel>()
-                .ToList();
+        //public ActionResult Index()
+        //{
+        //    var model = addressService
+        //        .All()
+        //        .OrderByDescending(x => x.CreatedOn)
+        //        .To<AdminAddressViewModel>()
+        //        .ToList();
 
-            return View(model);
+        //    return View(model);
+        //}
+
+        public ActionResult Index([DataSourceRequest(Prefix = "Grid")] DataSourceRequest request)
+        {
+            if (request.PageSize == 0)
+            {
+                request.PageSize = 20;
+            }
+
+
+            var model = addressService
+                .All();
+
+            var total = model.Count();
+
+            if (request.Page > 0)
+            {
+                model = model
+                    .OrderByDescending(x => x.CreatedOn)
+                    .Skip((request.Page - 1) * request.PageSize);                  
+            }
+
+            model=model.Take(request.PageSize);
+
+            ViewData["total"] = total;
+
+            return View(model.To<AdminAddressViewModel>().ToList());
         }
 
         [HttpPost]
@@ -71,7 +98,7 @@ namespace GoSport.Client.Areas.Administration.Controllers
 
             return View(address);
         }
-        
+
         public ActionResult Delete(int? id)
         {
             if (id == null)

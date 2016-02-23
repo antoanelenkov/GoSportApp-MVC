@@ -12,20 +12,22 @@
         cols.Command(c => c.Destroy());
     })
     .ColumnMenu()
-    .Pageable()
-    .Sortable()
+    .Sortable(sortable =>
+      {
+          sortable.SortMode(GridSortMode.SingleColumn);
+      })
     .Groupable()
-    .Filterable()
+    .Filterable(f => f.Mode(GridFilterMode.Menu))
     .Editable(edit => edit.Mode(GridEditMode.PopUp))
     .ToolBar(toolbar => toolbar.Create())
-    .DataSource(data =>
-    data
-    .Ajax()
-    .Model(m => m.Id(x => x.Id))
-    .Read(read => read.Action("Read", "Addresses"))
-    .Create(create => create.Action("Create", "Addresses"))
-    .Update(update => update.Action("Edit", "Addresses"))
-    .Destroy(destroy => destroy.Action("Delete", "Addresses"))))
+    .DataSource(data => data
+        .Server()
+        .Total((int)ViewData["total"])
+        .Model(m => m.Id(x => x.Id))
+        .Read(read => read.Action("Index", "Addresses"))
+        .Create(create => create.Action("Create", "Addresses"))
+        .Update(update => update.Action("Edit", "Addresses"))
+        .Destroy(destroy => destroy.Action("Delete", "Addresses"))))
 
 
 
