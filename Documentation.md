@@ -17,7 +17,7 @@
     - Edit(Get)
     - Edit(Post)
     - Delete
-  * [SportCentersController](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Areas/Administration/Controllers/SportCentersController.cs)
+ * [SportCentersController](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Areas/Administration/Controllers/SportCentersController.cs)
     - Index
     - Edit(Get)
     - Edit(Post)
