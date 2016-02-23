@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Go Sport</title>
     @Styles.Render("~/Content/kendo-css")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
@@ -21,24 +21,11 @@
                 @Html.ActionLink("Go Sport", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" },null)</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home" ,new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Search", "ByPreferance", "Advanced", new { area = "" }, null)</li>
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li>@Html.ActionLink("Add Sport Center", "Add", "SportCenter", new { area = "" }, null)</li>
-                        <li>@Html.ActionLink("Find Friends", "All", "Users", new { area = "Users" }, null)</li>
-                    }
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <li class="">@Html.ActionLink("Admin", "Index", "SportCenters", new { area = "Administration" }, null)</li>
-                    }
-                </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
+
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -46,6 +33,7 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
+
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/app")
     @RenderSection("scripts", required: false)

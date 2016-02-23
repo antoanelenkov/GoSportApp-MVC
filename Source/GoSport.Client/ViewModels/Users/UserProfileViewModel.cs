@@ -6,11 +6,17 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using AutoMapper;
+using System.Web.Mvc;
 
 namespace GoSport.Client.ViewModels.Users
 {
     public class UserProfileViewModel : IMapFrom<User>, IHaveCustomMappings
     {
+        [HiddenInput]
+        public string Id { get; set; }
+
+        public string UserName { get; set; }
+
         [Required]
         [Display(Name = "Name")]
         public string Name { get; set; }

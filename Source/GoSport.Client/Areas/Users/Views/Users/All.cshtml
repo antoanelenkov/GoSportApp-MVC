@@ -1,0 +1,8 @@
+﻿@using GoSport.Client.ViewModels.Users
+@using GoSport.Client.ViewModels
+@model IEnumerable<UserProfileViewModel>
+<hr />
+@foreach (var sportCenter in Model)
+{
+    Html.RenderPartial("_UsersPartial", sportCenter);
+}

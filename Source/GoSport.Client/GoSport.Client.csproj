@@ -210,7 +210,6 @@
     <Compile Include="Controllers\PageNotFoundController.cs" />
     <Compile Include="Controllers\RatingController.cs" />
     <Compile Include="Controllers\SportCenterController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -253,7 +252,11 @@
     <Content Include="Areas\Administration\Views\Categories\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Addresses\Index.cshtml" />
     <Content Include="Areas\Users\Views\web.config" />
-    <Content Include="Areas\Users\Views\All.cshtml" />
+    <Content Include="Areas\Users\Views\Users\All.cshtml" />
+    <Content Include="Areas\Users\Views\Shared\_UsersPartial.cshtml" />
+    <Content Include="Areas\Users\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Users\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Users\Views\Users\Profile.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ImageSlider\jquery.bxslider.js" />
     <Content Include="Scripts\ImageSlider\jquery.bxslider.min.js" />
@@ -316,7 +319,6 @@
     <Content Include="Views\SportCenter\Add.cshtml" />
     <Content Include="Views\Shared\_SportCategoriesPartial.cshtml" />
     <Content Include="Views\Shared\_AddressPartial.cshtml" />
-    <Content Include="Views\User\Profile.cshtml" />
     <Content Include="Views\SportCenter\Details.cshtml" />
     <Content Include="Views\Shared\_SportCenterInfoPartial.cshtml" />
     <Content Include="Views\Shared\_RatingPartial.cshtml" />
@@ -329,10 +331,10 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Users\Models\" />
-    <Folder Include="Areas\Users\Views\Shared\" />
     <Folder Include="Content\Avatars\" />
     <Folder Include="Content\ImageSlider\images\" />
     <Folder Include="Content\SportCenters\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
