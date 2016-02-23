@@ -206,6 +206,7 @@
     <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\AdvancedController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PageNotFoundController.cs" />
     <Compile Include="Controllers\RatingController.cs" />
@@ -328,6 +329,8 @@
     <Content Include="Views\SportCenter\Index.cshtml" />
     <Content Include="Views\Shared\_SportCenterDetailsPartial.cshtml" />
     <Content Include="Views\Shared\_BigAvatarPartial.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

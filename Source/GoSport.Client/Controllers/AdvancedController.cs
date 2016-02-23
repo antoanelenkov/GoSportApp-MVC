@@ -46,6 +46,8 @@ namespace GoSport.Client.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ByPreferance(SearchViewModel model)
         {
+            if (!ModelState.IsValid) throw new HttpException("Invalid parameters passed");
+
             string city = string.Empty;
             string neighbour = string.Empty;
             if (model.City != 0) city = addressService.All().FirstOrDefault(x => x.Id == model.City).City;
@@ -120,6 +122,8 @@ namespace GoSport.Client.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult BySortPreferance(string sortParam)
         {
+            if (!ModelState.IsValid) throw new HttpException("Invalid parameters passed");
+
             var model = new List<SportCenterViewModel>();
 
             if (sortParam != null || sortParam != string.Empty)
