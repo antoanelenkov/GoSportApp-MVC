@@ -22,31 +22,22 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Search", "ByPreferance", "Advanced")</li>
+                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" },null)</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home" ,new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Search", "ByPreferance", "Advanced", new { area = "" }, null)</li>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Add Sport Center", "Add", "SportCenter")</li>
+                        <li>@Html.ActionLink("Add Sport Center", "Add", "SportCenter", new { area = "" }, null)</li>
                         <li>@Html.ActionLink("Find Friends", "All", "Users", new { area = "Users" }, null)</li>
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="">@Html.ActionLink("Admin", "Index", "SportCenters", new { area = "Administration" }, null)</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
-        <div class="container">
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <li class="">@Html.ActionLink("Sport Centers", "Index", "SportCenters", new { area = "Administration" }, null)</li>
-                        <li class="">@Html.ActionLink("Sport Categories", "Index", "Categories", new { area = "Administration" }, null)</li>
-                        <li class="">@Html.ActionLink("Addresses", "Index", "Addresses", new { area = "Administration" }, null)</li>
-                    }
-                </ul>
-            </div>
-        </div>
-    </div>
     </div>
     <div class="container body-content">
         @RenderBody()

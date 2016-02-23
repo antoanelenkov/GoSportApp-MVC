@@ -2,6 +2,7 @@
 
 * Areas
    - Administation
+   - Users
     
 ### Administration Controllers
  *  [AdminController](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Areas/Administration/Controllers/AdminController.cs)
@@ -22,8 +23,14 @@
     - Edit(Get)
     - Edit(Post)
     - Delete
+
+### Users Controllers
+ * [UsersController](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Areas/Users/Controllers/UsersController.cs)	
+    - All
+    - Profile
+
  
- ### Main Controllers
+### Main Controllers
  * [BaseController](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Controllers/BaseController.cs)
  * [HomeController](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Controllers/HomeController.cs)
    - Index
@@ -46,12 +53,10 @@
     - BySortPreferance(Get)
     - BySortPreferance(Post)
     - ByPreferance
- * [UserController](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Controllers/UserController.cs)
-    - Profile
  * [ErrorController](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Controllers/ErrorController.cs)
     - NotFound
 
-## Partial Views
+### Partial Views
 * [AddCommentPartial](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Views/Shared/_AddCommentPartial.cshtml)
 * [AddressPartial](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Views/Shared/_AddressPartial.cshtml)
 * [AllCommentsPartial](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Views/Shared/_AllCommentsPartial.cshtml)
@@ -59,8 +64,9 @@
 * [SportCategoriesPartial](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Views/Shared/_SportCategoriesPartial.cshtml)
 * [SportCenterInfoPartial](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Views/Shared/_SportCenterInfoPartial.cshtml)
 * [LoginPartial](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Views/Shared/_LoginPartial.cshtml)
+* [LoginPartial](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Views/Shared/_SportCenterDetailsPartial.cshtml)
 
-## Filters
+### Filters
 * [ValidPhoneNumberAttribute](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Infrastructure/Filters/ValidPhoneNumberAttribute.cs)
    
 ### Ajax used for:

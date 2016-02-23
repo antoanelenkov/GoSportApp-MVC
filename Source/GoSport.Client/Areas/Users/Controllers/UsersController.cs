@@ -43,9 +43,8 @@ namespace GoSport.Client.Areas.Users.Controllers
             if (userFromDb != null)
             {
                 model = Mapper.Map<UserProfileViewModel>(userFromDb);
+                model.AvatarUrl = String.Format("/Content/Avatars/{0}.jpg", userFromDb.UserName);
             }
-
-            model.AvatarUrl = String.Format("/Content/Avatars/{0}.jpg", userFromDb.UserName);
 
             return View(model);
         }

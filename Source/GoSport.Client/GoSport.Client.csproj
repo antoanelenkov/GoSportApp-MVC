@@ -210,7 +210,6 @@
     <Compile Include="Controllers\PageNotFoundController.cs" />
     <Compile Include="Controllers\RatingController.cs" />
     <Compile Include="Controllers\SportCenterController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -320,7 +319,6 @@
     <Content Include="Views\SportCenter\Add.cshtml" />
     <Content Include="Views\Shared\_SportCategoriesPartial.cshtml" />
     <Content Include="Views\Shared\_AddressPartial.cshtml" />
-    <Content Include="Views\User\Profile.cshtml" />
     <Content Include="Views\SportCenter\Details.cshtml" />
     <Content Include="Views\Shared\_SportCenterInfoPartial.cshtml" />
     <Content Include="Views\Shared\_RatingPartial.cshtml" />
@@ -336,6 +334,7 @@
     <Folder Include="Content\Avatars\" />
     <Folder Include="Content\ImageSlider\images\" />
     <Folder Include="Content\SportCenters\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

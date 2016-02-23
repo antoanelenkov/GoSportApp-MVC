@@ -30,20 +30,19 @@
             </select>
             <br />
             <div class="row col-md-offset-4">
-                <input type="submit" class="btn btn-default" value=" Search" />
+                <input type="submit" class="btn btn-default" value=" Sort" />
             </div>
         </div>
-        <hr />
-                }
+}
 @if (Model.Count() == 0)
 {
+    <hr />
     <div>No results found for this criteria...</div>
 }
 @foreach (var sportCenter in Model)
 {
     Html.RenderPartial("_SportCenterDetailsPartial", sportCenter);
 }
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
