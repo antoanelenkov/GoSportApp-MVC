@@ -44,6 +44,80 @@ namespace GoSport.Client.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        public ActionResult ByPreferance(SearchViewModel model)
+        {
+            string city = string.Empty;
+            string neighbour = string.Empty;
+            if (model.City != 0) city = addressService.All().FirstOrDefault(x => x.Id == model.City).City;
+            if (model.Neighborhood != 0) neighbour = addressService.All().FirstOrDefault(x => x.Id == model.Neighborhood).Neighborhood;
+
+            var fromCitiesAndNeihbours = sportCenterService.All()
+                .Where(x => city != string.Empty ? x.Address.City == city : x.Address.City == null)
+                .Where(x => neighbour != string.Empty ? x.Address.Neighborhood == neighbour : x.Address.Neighborhood == null)
+                .To<SportCenterViewModel>()
+                .ToList();
+
+            // cities and neighbours
+            if (string.IsNullOrEmpty(neighbour))
+            {
+                fromCitiesAndNeihbours = sportCenterService.All()
+                .Where(x => city != string.Empty ? x.Address.City == city : x.Address.City == null)
+                .To<SportCenterViewModel>()
+                .ToList();
+            }
+
+            // categories
+            var categoriesNames = new List<string>();
+
+            if (model.SportCategories != null)
+            {
+                categoriesNames = Array
+                    .ConvertAll(model.SportCategories.Split(','), p => p.Trim()).Where(x => !string.IsNullOrEmpty(x)).ToList();
+            }
+
+            var fromCategories = new List<SportCenterViewModel>();
+
+            foreach (var category in categoriesNames)
+            {
+                var current = categoryService.All()
+                    .FirstOrDefault(x => x.Name == category);
+
+                if (current != null)
+                {
+                    fromCategories.AddRange(current.SportCenters
+                    .AsQueryable()
+                    .To<SportCenterViewModel>().ToList());
+                }
+
+            }
+
+            var resultSportCenters = new List<SportCenterViewModel>();
+
+            if (fromCitiesAndNeihbours.Count > 0 && fromCategories.Count > 0)
+            {
+                resultSportCenters = fromCitiesAndNeihbours
+                    .Where(x => fromCategories.Any(y => y.Name == x.Name))
+                    .ToList();
+            }
+            else if (fromCategories.Count > 0)
+            {
+                resultSportCenters = fromCategories;
+            }
+            else
+            {
+                resultSportCenters = fromCitiesAndNeihbours
+                    .Where(x => city != string.Empty ? x.Address.City == city : x.Address.City != null)
+                    .Where(x => neighbour != string.Empty ? x.Address.Neighborhood == neighbour : x.Address.Neighborhood != null)
+                    .ToList();
+            }
+
+            this.GetImageUrls(fromCitiesAndNeihbours);
+
+            return View(fromCitiesAndNeihbours);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult BySortPreferance(string sortParam)
         {
             var model = new List<SportCenterViewModel>();
