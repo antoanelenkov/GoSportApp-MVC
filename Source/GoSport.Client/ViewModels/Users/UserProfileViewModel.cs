@@ -6,11 +6,17 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using AutoMapper;
+using System.Web.Mvc;
 
 namespace GoSport.Client.ViewModels.Users
 {
     public class UserProfileViewModel : IMapFrom<User>, IHaveCustomMappings
     {
+        [HiddenInput]
+        public string Id { get; set; }
+
+        public string UserName { get; set; }
+
         [Required]
         [Display(Name = "Name")]
         public string Name { get; set; }
@@ -21,6 +27,9 @@ namespace GoSport.Client.ViewModels.Users
         public string City { get; set; }
 
         public string Neighborhood { get; set; }
+
+        [Display(Name = "Phone number")]
+        public string PhoneNumber { get; set; }
 
         [Display(Name = "Facebook profile")]
         public string Facebook { get; set; }

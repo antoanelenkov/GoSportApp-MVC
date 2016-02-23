@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace GoSport.Client.Areas.Users.Controllers
 {
+    [Authorize]
     public class UsersController: BaseController
     {
         IUserService usersService;
@@ -31,6 +32,22 @@ namespace GoSport.Client.Areas.Users.Controllers
             var users = usersService.GetAll().To<UserProfileViewModel>().ToList();
 
             return View(users);
+        }
+
+        [HttpGet]
+        public new ActionResult Profile(string id)
+        {
+            var userFromDb = usersService.GetUserById(id);
+            var model = new UserProfileViewModel();
+
+            if (userFromDb != null)
+            {
+                model = Mapper.Map<UserProfileViewModel>(userFromDb);
+            }
+
+            model.AvatarUrl = String.Format("/Content/Avatars/{0}.jpg", userFromDb.UserName);
+
+            return View(model);
         }
     }
 }

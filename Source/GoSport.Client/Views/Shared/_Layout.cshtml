@@ -24,11 +24,12 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Search", "ByPreferance", "Advanced")</li>
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Add Sport Center", "Add", "SportCenter")</li>
+                        <li>@Html.ActionLink("Find Friends", "All", "Users", new { area = "Users" }, null)</li>
                     }
-                    <li>@Html.ActionLink("Search", "ByPreferance", "Advanced")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

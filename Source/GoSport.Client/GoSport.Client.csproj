@@ -253,7 +253,11 @@
     <Content Include="Areas\Administration\Views\Categories\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Addresses\Index.cshtml" />
     <Content Include="Areas\Users\Views\web.config" />
-    <Content Include="Areas\Users\Views\All.cshtml" />
+    <Content Include="Areas\Users\Views\Users\All.cshtml" />
+    <Content Include="Areas\Users\Views\Shared\_UsersPartial.cshtml" />
+    <Content Include="Areas\Users\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Users\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Users\Views\Users\Profile.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ImageSlider\jquery.bxslider.js" />
     <Content Include="Scripts\ImageSlider\jquery.bxslider.min.js" />
@@ -329,7 +333,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Users\Models\" />
-    <Folder Include="Areas\Users\Views\Shared\" />
     <Folder Include="Content\Avatars\" />
     <Folder Include="Content\ImageSlider\images\" />
     <Folder Include="Content\SportCenters\" />

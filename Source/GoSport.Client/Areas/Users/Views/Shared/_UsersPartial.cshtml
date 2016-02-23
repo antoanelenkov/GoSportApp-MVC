@@ -1,0 +1,42 @@
+﻿@using GoSport.Client.ViewModels.Users
+@using Microsoft.AspNet.Identity;
+@model UserProfileViewModel
+<div class="row">
+    <div class="col-md-1">
+        <a href='@String.Format("/Users/Users/Profile/{0}",Model.Id)'>
+            <img src="@String.Format("/Content/Avatars/{0}.jpg",Model.UserName)"
+                 onError="this.onerror = null; this.src='https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRQYvnZBfeVGEm4cbMDXLlr-xOat9DQungOjV8sUGPcHgE1u3BE';"
+                 alt="avatar" height=70 width=70 class="img-rounded" />
+        </a>
+    </div>
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-2">Name: </div>
+            <a href="\SportCenter\Details\@Model.Id" class="badge">@Model.Name</a>
+        </div>
+        <div class="row">
+            <div class="col-md-2">City: </div>
+            <a href="\Advanced\ByPreferance?City=@Model.City" class="badge">@Model.City</a>
+        </div>
+        <div class="row">
+            <div class="col-md-2">Neighbour: </div>
+            <a href="\Advanced\ByPreferance?Neighbour=@Model.Neighborhood" class="badge">@Model.Neighborhood</a>
+        </div>
+        <div class="row">
+            <div class="col-md-2">Phone number: </div>
+            <a href="\Advanced\ByPreferance?Neighbour=@Model.Facebook" class="badge">@Model.Facebook</a>
+        </div>
+        <div class="row">
+            <div class="col-md-2">Phone number: </div>
+            <a href="\Advanced\ByPreferance?Neighbour=@Model.PhoneNumber" class="badge">@Model.PhoneNumber</a>
+        </div>
+        <div class="row">
+            <div class="col-md-2">Practiced sports: </div>
+            @foreach (var item in Model.FavouriteCategories)
+            {
+                <a href="\Advanced\ByPreferance?category=@item.Name" class="badge">@item.Name</a>
+            }
+        </div>
+    </div>
+</div>
+<hr />
