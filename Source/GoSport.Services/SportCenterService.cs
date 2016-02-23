@@ -13,11 +13,16 @@ namespace GoSport.Services
     {
         private IDeletableEntityRepository<SportCenter> sportCentersDb;
         private IDeletableEntityRepository<User> usersDb;
+        private IDeletableEntityRepository<SportCategory> categoriesDb;
 
-        public SportCenterService(IDeletableEntityRepository<SportCenter> sportCentersDb, IDeletableEntityRepository<User> usersDb)
+        public SportCenterService(
+            IDeletableEntityRepository<SportCenter> sportCentersDb, 
+            IDeletableEntityRepository<User> usersDb,
+            IDeletableEntityRepository<SportCategory> categoriesDb)
         {
             this.sportCentersDb = sportCentersDb;
             this.usersDb = usersDb;
+            this.categoriesDb = categoriesDb;
         }
 
         public void AddImagesToSportCenter(string sportCenterName, IEnumerable<string> imagesUrl)
@@ -71,9 +76,21 @@ namespace GoSport.Services
         public bool DeleteById(int id)
         {
             var entity = sportCentersDb.All().FirstOrDefault(x => x.Id == id);
+            var categories = this.categoriesDb.All();
+
+
             if (entity == null)
             {
                 return false;
+            }
+
+            foreach (var category in categories)
+            {
+                if(category.SportCenters.Any(x=>x.Id== entity.Id))
+                {
+                    var itemToRemove = category.SportCenters.FirstOrDefault(x => x.Id == entity.Id);
+                    category.SportCenters.Remove(itemToRemove);
+                }
             }
 
             sportCentersDb.Delete(id);

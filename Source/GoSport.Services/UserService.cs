@@ -18,9 +18,9 @@ namespace GoSport.Services
             this.userService = userService;
         }
 
-        public IEnumerable<User> GetAll()
+        public IQueryable<User> GetAll()
         {
-            throw new NotImplementedException();
+            return this.userService.All();
         }
 
         public User GetUserById(string id)

@@ -196,10 +196,11 @@
     <Compile Include="Areas\Administration\Controllers\AddressesController.cs" />
     <Compile Include="Areas\Administration\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminController.cs" />
-    <Compile Include="Areas\Administration\Controllers\SportCategoriesController.cs" />
     <Compile Include="Areas\Administration\Controllers\SportCentersController.cs" />
     <Compile Include="Areas\Administration\ViewModels\AdminAddressViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\AdminSportCategoryViewModel.cs" />
+    <Compile Include="Areas\Users\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Users\UsersAreaRegistration.cs" />
     <Compile Include="Common\GlobalConstants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressController.cs" />
@@ -251,6 +252,8 @@
     <Content Include="Areas\Administration\Views\SportCenters\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Categories\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Addresses\Index.cshtml" />
+    <Content Include="Areas\Users\Views\web.config" />
+    <Content Include="Areas\Users\Views\All.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ImageSlider\jquery.bxslider.js" />
     <Content Include="Scripts\ImageSlider\jquery.bxslider.min.js" />
@@ -321,9 +324,12 @@
     <Content Include="Views\Shared\_AllCommentsPartial.cshtml" />
     <Content Include="Views\Advanced\ByPreferance.cshtml" />
     <Content Include="Views\SportCenter\Index.cshtml" />
+    <Content Include="Views\Shared\_SportCenterDetailsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Users\Models\" />
+    <Folder Include="Areas\Users\Views\Shared\" />
     <Folder Include="Content\Avatars\" />
     <Folder Include="Content\ImageSlider\images\" />
     <Folder Include="Content\SportCenters\" />

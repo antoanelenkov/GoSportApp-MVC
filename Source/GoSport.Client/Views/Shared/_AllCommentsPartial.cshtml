@@ -7,7 +7,7 @@
 }
 else
 {
-    foreach (var comment in @Model.OrderByDescending(x => x.CreatedOn).ToList())
+    foreach (var comment in @Model.OrderBy(x => x.CreatedOn).ToList())
     {
         <div class="row">
             <div class="col-md-3"></div>

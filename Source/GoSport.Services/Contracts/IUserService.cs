@@ -11,7 +11,7 @@ namespace GoSport.Services.Contracts
     {
         IEnumerable<User> GetUsersWithConcreteInterests(IEnumerable<SportCategory> categories);
 
-        IEnumerable<User> GetAll();
+        IQueryable<User> GetAll();
 
         User GetUserById(string id);
     }
