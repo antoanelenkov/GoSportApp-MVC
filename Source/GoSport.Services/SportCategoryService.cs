@@ -16,13 +16,13 @@ namespace GoSport.Services
         private IDeletableEntityRepository<SportCenter> sportCentesDb;
 
         public SportCategoryService(
-            IDeletableEntityRepository<SportCategory> sportCategoriesDb, 
+            IDeletableEntityRepository<SportCategory> sportCategoriesDb,
             IDeletableEntityRepository<User> usersDb,
             IDeletableEntityRepository<SportCenter> sportCentesDb)
         {
             this.sportCategoriesDb = sportCategoriesDb;
             this.usersDb = usersDb;
-            this.sportCentesDb =  sportCentesDb;
+            this.sportCentesDb = sportCentesDb;
         }
 
         public void AddCategoriesForSportCenter(IEnumerable<string> categoriesNames, string sportCenterName)
@@ -78,9 +78,10 @@ namespace GoSport.Services
             return sportCategoriesDb.All().Select(x => x.Name);
         }
 
-        public SportCategory Create(string name)
+        public void Create(string name)
         {
-            throw new NotImplementedException();
+            this.sportCategoriesDb.Add(new SportCategory() { Name = name });
+            sportCategoriesDb.SaveChanges();
         }
 
         public bool DeleteById(int id)
@@ -89,6 +90,28 @@ namespace GoSport.Services
             if (entity == null)
             {
                 return false;
+            }
+
+            var centers = sportCentesDb.All();
+            foreach (var center in centers)
+            {
+                var categoriesToRemove = new List<SportCategory>();
+
+                foreach (var category in center.Categories)
+                {
+                    if (category.Name == entity.Name)
+                    {
+                        categoriesToRemove.Add(category);
+                    }
+                }
+
+                foreach (var category in categoriesToRemove)
+                {
+                    if (center.Categories.Any(x => x.Name == category.Name))
+                    {
+                        center.Categories.Remove(category);
+                    }
+                }
             }
 
             sportCategoriesDb.Delete(id);
@@ -113,7 +136,16 @@ namespace GoSport.Services
 
         public bool UpdateById(int id, string name)
         {
-            throw new NotImplementedException();
+            var entity = sportCategoriesDb.GetById(id);
+
+            if (entity == null) return false;
+
+            entity.Name = name;
+
+            sportCategoriesDb.Update(entity);
+            sportCategoriesDb.SaveChanges();
+
+            return true;
         }
 
         public SportCategory GetById(int id)
