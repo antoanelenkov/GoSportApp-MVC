@@ -327,6 +327,7 @@
     <Content Include="Views\Advanced\ByPreferance.cshtml" />
     <Content Include="Views\SportCenter\Index.cshtml" />
     <Content Include="Views\Shared\_SportCenterDetailsPartial.cshtml" />
+    <Content Include="Views\Shared\_BigAvatarPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -334,6 +335,7 @@
     <Folder Include="Content\Avatars\" />
     <Folder Include="Content\ImageSlider\images\" />
     <Folder Include="Content\SportCenters\" />
+    <Folder Include="Views\Shared\EditorTemplates\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
