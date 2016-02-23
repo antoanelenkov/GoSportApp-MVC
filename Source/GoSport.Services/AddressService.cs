@@ -14,15 +14,55 @@ namespace GoSport.Services
         private IDeletableEntityRepository<Address> addressesDb;
         private IDeletableEntityRepository<User> usersDb;
         private IDeletableEntityRepository<SportCenter> sportCenters;
+        private ISportCenterService sportCenterService;
 
         public AddressService(
-            IDeletableEntityRepository<Address> addressesDb, 
+            IDeletableEntityRepository<Address> addressesDb,
             IDeletableEntityRepository<User> usersDb,
-             IDeletableEntityRepository<SportCenter> sportCenters)
+             IDeletableEntityRepository<SportCenter> sportCenters,
+             ISportCenterService sportCenterService)
         {
             this.addressesDb = addressesDb;
             this.usersDb = usersDb;
             this.sportCenters = sportCenters;
+            this.sportCenterService = sportCenterService;
+        }
+
+        public void Create(string city, string neighbour)
+        {
+            addressesDb.Add(new Address() { City = city, Neighborhood = neighbour });
+            addressesDb.SaveChanges();
+        }
+
+        public void Update(int id, string city, string neigbour)
+        {
+            var model = addressesDb.GetById(id);
+
+            model.City = city;
+            model.Neighborhood = neigbour;
+
+            addressesDb.SaveChanges();
+        }
+
+        public bool Delete(int id)
+        {
+            var model = addressesDb.GetById(id);
+            if (model == null)
+            {
+                return false;
+            }
+
+            var centers = addressesDb.GetById(id).SportCenters;
+
+            foreach (var center in centers)
+            {
+                sportCenterService.DeleteById(center.Id);
+            }
+
+            addressesDb.Delete(model);
+            addressesDb.SaveChanges();
+
+            return true;
         }
 
         public IQueryable<Address> AllCities()

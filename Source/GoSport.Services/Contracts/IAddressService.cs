@@ -11,6 +11,12 @@ namespace GoSport.Services.Contracts
     {
         Address GetById(int id);
 
+        void Update(int id, string city, string neigbour);
+
+        bool Delete(int id);
+
+        void Create(string city, string neighbour);
+
         IQueryable<Address> AllCities();
 
         IQueryable<Address> All();

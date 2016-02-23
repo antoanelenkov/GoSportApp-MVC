@@ -1,5 +1,5 @@
 ﻿@using Kendo.Mvc.UI;
-@using GoSport.Client.Areas.Administration.ViewModels
+@using GoSport.Client.Areas.Administration.ViewModels;
 @model IEnumerable<AdminSportCenterViewModel>
 @{
     ViewBag.Title = "View";
@@ -26,6 +26,7 @@
     .Ajax()
     .Model(m => m.Id(x=>x.Id))
     .Read(read => read.Action("Read", "SportCenters"))
+    .Create(create => create.Action("Create", "SportCenters"))
     .Update(update => update.Action("Edit", "SportCenters"))
     .Destroy(destroy => destroy.Action("Delete", "SportCenters"))))
     

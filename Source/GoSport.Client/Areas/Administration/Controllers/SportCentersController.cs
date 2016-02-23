@@ -29,7 +29,7 @@ namespace GoSport.Client.Areas.Administration.Controllers
         {
             var model = sportCenterService
                 .All()
-                .OrderBy(x=>x.Name)
+                .OrderByDescending(x=>x.CreatedOn)
                 .To<AdminSportCenterViewModel>()
                 .ToList();
 

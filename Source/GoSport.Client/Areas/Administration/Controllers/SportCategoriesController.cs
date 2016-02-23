@@ -28,7 +28,7 @@
         {
             var model = sportCategories
                 .All()
-                .OrderBy(x => x.Name)
+                .OrderByDescending(x => x.CreatedOn)
                 .To<AdminSportCategoryViewModel>()
                 .ToList();
 

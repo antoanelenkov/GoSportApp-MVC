@@ -23,6 +23,7 @@
     .Ajax()
     .Model(m => m.Id(x => x.Id))
     .Read(read => read.Action("Read", "SportCategories"))
+        .Create(create => create.Action("Create", "SportCategories"))
     .Update(update => update.Action("Edit", "SportCategories"))
     .Destroy(destroy => destroy.Action("Delete", "SportCategories"))))
 

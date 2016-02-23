@@ -2,6 +2,7 @@
 using GoSport.Client.Infrastructure.Mapping;
 using GoSport.Client.ViewModels.SportCenters;
 using GoSport.Services.Contracts;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +14,18 @@ namespace GoSport.Client.Controllers
     public class HomeController : BaseController
     {
         private ISportCenterService sportCenterService;
+        private IUserService usersService;
 
         public HomeController(
             ISportCategoryService sportCategories,
             IAddressService addressService,
             ISportCategoryService categoryService,
-            ISportCenterService sportCenterService)
+            ISportCenterService sportCenterService,
+            IUserService usersService)
             : base(sportCategories, addressService, categoryService)
         {
             this.sportCenterService = sportCenterService;
+            this.usersService = usersService;
 
             ViewBag.AllSportCentersCount = sportCenterService.All().Count();
             ViewBag.ItemsPerPage = 4;
@@ -37,7 +41,7 @@ namespace GoSport.Client.Controllers
             if (model == null)
             {
                 model = sportCenterService.All()
-                        .OrderByDescending(x => x.CreatedOn)
+                        .OrderByDescending(x => x.Rating.Total)
                         .Skip((id-1)* (int)ViewBag.ItemsPerPage)
                         .Take((int)ViewBag.ItemsPerPage)
                         .To<SportCenterViewModel>()

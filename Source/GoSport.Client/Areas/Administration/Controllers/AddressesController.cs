@@ -2,6 +2,7 @@
 using GoSport.Client.Infrastructure.Mapping;
 using GoSport.Data.Models;
 using GoSport.Services.Contracts;
+using Kendo.Mvc.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ using System.Web.Mvc;
 
 namespace GoSport.Client.Areas.Administration.Controllers
 {
-    public class AddressesController:AdminController
+    public class AddressesController : AdminController
     {
         public AddressesController(
            ISportCategoryService sportCategories,
@@ -27,9 +28,17 @@ namespace GoSport.Client.Areas.Administration.Controllers
         {
             var model = addressService
                 .All()
-                .OrderBy(x => x.City)
+                .OrderByDescending(x => x.CreatedOn)
                 .To<AdminAddressViewModel>()
                 .ToList();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Create([DataSourceRequest]DataSourceRequest request, AdminAddressViewModel model)
+        {
+            addressService.Create(model.City, model.Neighbour);
 
             return View(model);
         }
@@ -41,29 +50,28 @@ namespace GoSport.Client.Areas.Administration.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var sportCenter = this.sportCategories.GetById((int)id);
-            if (sportCenter == null)
+            var address = this.addressService.GetById((int)id);
+            if (address == null)
             {
                 return HttpNotFound();
             }
 
-            return View(sportCenter);
+            return View(address);
         }
 
         [HttpPost]
-        public ActionResult Edit(AdminSportCenterViewModel sportCenter)
+        public ActionResult Edit(AdminAddressViewModel address)
         {
             if (ModelState.IsValid)
             {
-                this.sportCenterService.Update(Mapper.Map<SportCenter>(sportCenter), sportCenter.City, sportCenter.Neighbour);
+                this.addressService.Update(address.Id, address.City, address.Neighbour);
 
                 return RedirectToAction("Index");
             }
 
-            return View(sportCenter);
+            return View(address);
         }
-
-        // GET: Administration/SportCenters/Delete/5
+        
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -71,7 +79,7 @@ namespace GoSport.Client.Areas.Administration.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var isDeleted = this.sportCenterService.DeleteById((int)id);
+            var isDeleted = this.addressService.Delete((int)id);
 
             if (!isDeleted)
             {
