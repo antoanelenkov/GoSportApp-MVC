@@ -12,7 +12,7 @@
     <div class="col-md-9">
         <div class="row">
             <div class="col-md-2">Name: </div>
-            <a href="\Users\Users\Profile\@Model.Id" class="badge">@Model.Id</a>
+            <a href="\Users\Users\Profile\@Model.Id" class="badge">@Model.Name</a>
         </div>
         <div class="row">
             <div class="col-md-2">City: </div>
@@ -23,12 +23,15 @@
             <a href="\Advanced\ByPreferance?Neighbour=@Model.Neighborhood" class="badge">@Model.Neighborhood</a>
         </div>
         <div class="row">
-            <div class="col-md-2">Phone number: </div>
-            <a href="\Advanced\ByPreferance?Neighbour=@Model.Facebook" class="badge">@Model.Facebook</a>
-        </div>
-        <div class="row">
-            <div class="col-md-2">Phone number: </div>
-            <a href="\Advanced\ByPreferance?Neighbour=@Model.PhoneNumber" class="badge">@Model.PhoneNumber</a>
+            <div class="col-md-2">Facebook: </div>
+            @if (Model.Facebook != null)
+            {
+                <a href="\Advanced\ByPreferance?Neighbour=@Model.Facebook" class="badge">@Model.Facebook</a>
+            }
+            else
+            {
+                <div>No facebook added...</div>
+            }
         </div>
         <div class="row">
             <div class="col-md-2">Practiced sports: </div>
@@ -39,4 +42,3 @@
         </div>
     </div>
 </div>
-<hr />

@@ -28,9 +28,6 @@ namespace GoSport.Client.ViewModels.Users
 
         public string Neighborhood { get; set; }
 
-        [Display(Name = "Phone number")]
-        public string PhoneNumber { get; set; }
-
         [Display(Name = "Facebook profile")]
         public string Facebook { get; set; }
 
