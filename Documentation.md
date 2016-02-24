@@ -28,6 +28,7 @@
  * [UsersController](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Areas/Users/Controllers/UsersController.cs)	
     - All
     - Profile
+    - AddMessage
 
  
 ### Main Controllers
@@ -64,7 +65,9 @@
 * [SportCategoriesPartial](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Views/Shared/_SportCategoriesPartial.cshtml)
 * [SportCenterInfoPartial](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Views/Shared/_SportCenterInfoPartial.cshtml)
 * [LoginPartial](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Views/Shared/_LoginPartial.cshtml)
-* [LoginPartial](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Views/Shared/_SportCenterDetailsPartial.cshtml)
+* [SportCenterDetailsPartial](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Views/Shared/_SportCenterDetailsPartial.cshtml)
+* [AllMessagesPartial](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Areas/Users/Views/Shared/_AddMessagePartial.cshtml)
+* [AddMessagesPartial](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Areas/Users/Views/Shared/_AllMessagesPartial.cshtml)
 
 ### Filters
 * [ValidPhoneNumberAttribute](https://github.com/antoanelenkov/GoSportApp-MVC/blob/master/Source/GoSport.Client/Infrastructure/Filters/ValidPhoneNumberAttribute.cs)
