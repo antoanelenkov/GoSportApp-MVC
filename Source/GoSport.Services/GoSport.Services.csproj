@@ -62,8 +62,10 @@
     <Compile Include="Contracts\IAddressService.cs" />
     <Compile Include="Contracts\ICacheService.cs" />
     <Compile Include="Contracts\IIdentifierProvider.cs" />
+    <Compile Include="Contracts\IMessageService.cs" />
     <Compile Include="HttpCacheService.cs" />
     <Compile Include="IdentifierProvider.cs" />
+    <Compile Include="MessageService.cs" />
     <Compile Include="SportCategoryService.cs" />
     <Compile Include="SportCenterService.cs" />
     <Compile Include="Contracts\ISportCategoryService.cs" />

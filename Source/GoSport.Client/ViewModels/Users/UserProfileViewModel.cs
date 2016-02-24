@@ -46,6 +46,12 @@ namespace GoSport.Client.ViewModels.Users
         [Display(Name = "Favourite sports")]
         public IEnumerable<SportCategory> FavouriteCategories { get; set; }
 
+        public IEnumerable<Message> Messages { get; set; }
+
+        public IEnumerable<Message> OwnMessages { get; set; }
+
+        public IEnumerable<Message> VisitorMessages { get; set; }
+
         public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<User, UserProfileViewModel>()

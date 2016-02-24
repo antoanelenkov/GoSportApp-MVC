@@ -79,8 +79,7 @@ namespace GoSport.Client.App_Start
             kernel.Bind<ICacheService>().To<HttpCacheService>();
             kernel.Bind<IIdentifierProvider>().To<IdentifierProvider>();
             kernel.Bind<IUserService>().To<UserService>();
-
-
+            kernel.Bind<IMessageService>().To<MessageService>();
         }        
     }
 }

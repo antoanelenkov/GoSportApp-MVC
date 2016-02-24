@@ -83,6 +83,15 @@ $('#add-comment').on('click', function (ev) {
     return false;
 });
 
+$('#add-message').on('click', function (ev) {
+    var btn = $(ev.target);
+    if (btn.text() === 'Add Message') btn.text('Cancel');
+    else btn.text('Add Message');
+    $('.add-message').toggleClass('hidden');
+
+    return false;
+});
+
 $('.starRate').on('click', function (ev) {
     var btn = $(ev.target);
     if (btn.is('span')) btn = btn.parent();

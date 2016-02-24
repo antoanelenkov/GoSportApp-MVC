@@ -258,6 +258,8 @@
     <Content Include="Areas\Users\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Users\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Users\Views\Users\Profile.cshtml" />
+    <Content Include="Areas\Users\Views\Shared\_AllMessagesPartial.cshtml" />
+    <Content Include="Areas\Users\Views\Shared\_AddMessagePartial.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ImageSlider\jquery.bxslider.js" />
     <Content Include="Scripts\ImageSlider\jquery.bxslider.min.js" />
@@ -286,7 +288,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
