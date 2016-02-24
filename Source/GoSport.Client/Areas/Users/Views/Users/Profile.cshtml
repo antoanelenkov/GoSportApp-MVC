@@ -63,32 +63,6 @@
     </div>
 </div>
 <hr />
-@*<h1 class="row text-center">Messages</h1>
-@if (Model.Messages.OrderByDescending(x => x.CreatedOn).ToList().Count() == 0)
-{
-        <<div class="row text-center">No corespondation yet...</div>
-}
-else
-{
-    var messages = Model.Messages.OrderBy(x => x.CreatedOn).ToList();
-    foreach (var message in messages)
-    {
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6 comment">
-                <div class="row">
-                    <div class="col-md-3">@message.Author.Name:  </div>
-                    <div class="col-md-9">"@message.Content"</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">Date created:  </div>
-                    <i class="col-md-4">@message.CreatedOn</i>
-                </div>
-            </div>
-            <div class="col-md-2"></div>
-        </div>
-    }
-}*@
 @if (Model.Id != User.Identity.GetUserId())
 {
     <div id="messages">
