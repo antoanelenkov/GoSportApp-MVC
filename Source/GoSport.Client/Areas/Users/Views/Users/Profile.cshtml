@@ -89,12 +89,12 @@ else
         </div>
     }
 }*@
-<div id="messages">
-    @Html.Partial("_AllMessagesPartial", Model.Messages);
-</div>
-<br />
-@if(Model.Id != User.Identity.GetUserId())
+@if (Model.Id != User.Identity.GetUserId())
 {
+    <div id="messages">
+        @Html.Partial("_AllMessagesPartial", Model.Messages);
+    </div>
+    <br />
     @Html.Partial("_AddMessagePartial", Model.Id);
 }
 
