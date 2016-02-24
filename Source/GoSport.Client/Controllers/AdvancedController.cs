@@ -46,12 +46,11 @@ namespace GoSport.Client.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ByPreferance(SearchViewModel model)
         {
-            if (!ModelState.IsValid) throw new HttpException("Invalid parameters passed");
-
             string city = string.Empty;
             string neighbour = string.Empty;
             if (model.City != 0) city = addressService.All().FirstOrDefault(x => x.Id == model.City).City;
             if (model.Neighborhood != 0) neighbour = addressService.All().FirstOrDefault(x => x.Id == model.Neighborhood).Neighborhood;
+            var cityOrNeighbourPassed = (city != string.Empty || neighbour != string.Empty);
 
             var fromCitiesAndNeihbours = sportCenterService.All()
                 .Where(x => city != string.Empty ? x.Address.City == city : x.Address.City == null)
@@ -101,11 +100,11 @@ namespace GoSport.Client.Controllers
                     .Where(x => fromCategories.Any(y => y.Name == x.Name))
                     .ToList();
             }
-            else if (fromCategories.Count > 0)
+            else if (fromCategories.Count > 0 && !cityOrNeighbourPassed)
             {
                 resultSportCenters = fromCategories;
             }
-            else
+            else if(cityOrNeighbourPassed)
             {
                 resultSportCenters = fromCitiesAndNeihbours
                     .Where(x => city != string.Empty ? x.Address.City == city : x.Address.City != null)
@@ -113,17 +112,15 @@ namespace GoSport.Client.Controllers
                     .ToList();
             }
 
-            this.GetImageUrls(fromCitiesAndNeihbours);
+            this.GetImageUrls(resultSportCenters);
 
-            return View(fromCitiesAndNeihbours);
+            return View(resultSportCenters);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult BySortPreferance(string sortParam)
         {
-            if (!ModelState.IsValid) throw new HttpException("Invalid parameters passed");
-
             var model = new List<SportCenterViewModel>();
 
             if (sortParam != null || sortParam != string.Empty)
